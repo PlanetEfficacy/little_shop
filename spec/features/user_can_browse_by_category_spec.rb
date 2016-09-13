@@ -18,6 +18,7 @@ RSpec.feature "visitor can browse by category" do
 
     visit category_path(category_1)
 
+    expect(current_path).to eq "/writing-implements"
     expect(page).to have_css(".item", count: 2)
     expect(page).to have_content("All items for writing implements:")
 
