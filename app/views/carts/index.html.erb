@@ -1,0 +1,5 @@
+<%= @cart.items.each do |item| %>
+  <div class="invoice_item">
+    <%= link_to image_tag(item.image_url), item_path(item) %>
+  </div>
+<% end %>
