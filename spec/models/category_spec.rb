@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe Item, type: :model do
+RSpec.describe Category, type: :model do
   it "has many category_items" do
-    should have_many(:categories)
+    should have_many(:items)
   end
 
-  it "has many categorizations" do
+  it "has many category_items" do
     should have_many(:category_items)
   end
 end
