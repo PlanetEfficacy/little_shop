@@ -1,4 +1,4 @@
-class Categorization < ActiveRecord::Base
+class CategoryItem < ActiveRecord::Base
   belongs_to :item
   belongs_to :category
 end

@@ -6,6 +6,6 @@ RSpec.describe Item, type: :model do
   end
 
   it "has many categorizations" do
-    should have_many(:categorizations)
+    should have_many(:category_items)
   end
 end
