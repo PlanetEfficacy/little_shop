@@ -4,5 +4,7 @@
     <%= item.title %>
     <%= item.price %>
     <%= image_tag item.image_url %>
+    <%= button_to "Add to Cart", cart_path(item_id: item.id)  %>
   </div>
 <% end %>
+<%= link_to "View Cart", cart_path%>
