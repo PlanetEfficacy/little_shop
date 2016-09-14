@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :dashboard, only: [:index]
 
   get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
 
   resources :items, only: [:index, :show]
   post '/cart', to: 'carts#create'
