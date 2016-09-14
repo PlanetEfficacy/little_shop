@@ -40,6 +40,8 @@ group :development, :test do
   gem 'pry'
   # gem 'mocha'
   gem 'rspec-rails'
+  gem 'fabrication'
+  gem 'faker'
 end
 
 group :development do
