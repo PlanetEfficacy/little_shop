@@ -5,6 +5,11 @@ class SessionEvaluator
     @session = session
   end
 
-  def redirect
+  def redirect_to_cart
+    session[:cart] ? true : false
+  end
+
+  def redirect_to_dashboard
+    session[:cart] ? false : true
   end
 end
