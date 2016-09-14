@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
 
   def show
-    @category = Category.find_by_name(deparameterize(params[:categories]))
+    @category = Category.find_by_name(deparameterize(params[:category]))
     @items = @category.items
   end
 

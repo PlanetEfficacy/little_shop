@@ -15,6 +15,7 @@ RSpec.feature "visitor can add item to cart and then see it in the cart" do
     # And I click a link or button to view cart
     click_on "View Cart"
     # And my current path should be "/cart"
+    
     expect(current_path).to eq('/cart')
     # And I should see a small image, title, description and price for the item I just added
     within(".invoice_item") do

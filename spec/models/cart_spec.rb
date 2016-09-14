@@ -32,5 +32,14 @@ RSpec.describe Cart, type: :model do
     expect(cart.total_price).to be_an_instance_of(BigDecimal)
   end
 
+  it 'can have items removed from it' do
+    cart = Cart.new(nil)
+    item = Item.create(title: "Paperclip", description: "This is an artisinal paperclip!", price: 5000, image_url: "http://tectonicablog.com/wp-content/uploads/2013/01/023-455x606.jpg")
+    cart.add_item(item.id)
+    expect(cart.contents.length).to eq(1)    
+    cart.remove_item(item.id)
+    expect(cart.contents.length).to eq(0)
+  end
+
 
 end

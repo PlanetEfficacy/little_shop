@@ -1,13 +1,15 @@
-<%= @cart.items.each do |item| %>
-  <div class="invoice_item">
+<div class="invoice_item">
+<% @cart.items.each do |item| %>
     <div class="thumbnail">
       <%= link_to image_tag(item.image_url), item_path(item) %>
     </div>
     <p><%= item.title %></p>
     <p><%= item.description %></p>
     <p><%= number_to_currency(item.dollars) %></p>
-  </div>
+  <%= link_to "Remove", cart_path(item_id: item.id), method: :delete %>
 <% end %>
+</div>
+
 
 <div class="invoice_total">
   <p>Total: <%= number_to_currency(@cart.total_price) %></p>
