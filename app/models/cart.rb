@@ -44,11 +44,7 @@ class Cart
   end
 
   def total_price
-    # if contents.empty?
-    #   "0.00"
-    # else
-    contents.map{ |id, quantity| Item.find(id).dollars * quantity }.sum
-    # end
+    contents.map{ |id, quantity| price(id) * quantity }.sum
   end
 
 end
