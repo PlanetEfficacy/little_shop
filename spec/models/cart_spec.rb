@@ -60,7 +60,7 @@ RSpec.describe Cart, type: :model do
     expect(cart.total_price).to be_an_instance_of(BigDecimal)
   end
 
-  it 'can cahnge quantity of an item it contains' do
+  it 'can change quantity of an item it contains' do
     cart = Cart.new(nil)
     item1 = Fabricate(:item)
     cart.add_item(item1.id)
