@@ -17,13 +17,12 @@ RSpec.feature "visitor creates account" do
     visit login_path
     click_on "Create Account"
     expect(current_path).to eq (new_user_path)
-    # first and last name? thinking about shipping addresses in future cards...
     fill_in "Name", with: "Kevin"
     fill_in "Username", with: "Kevin1"
     fill_in "Password", with: "password1"
     fill_in "Password confirmation", with: "password1"
     click_on "Create Account"
-    expect(current_path).to eq(dashboard_path)
+    expect(current_path).to eq(dashboard_index_path)
     # flash message?
     expect(page).to have_content("Logged in as Kevin")
     expect(page).to_not have_link("Login")

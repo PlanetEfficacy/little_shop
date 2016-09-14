@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'items#index'
 
   resources :users, only: [:new, :create, :show]
-  resources :dashboards, only: [:index]
+  resources :dashboard, only: [:index]
 
   get '/login', to: 'sessions#new'
 
