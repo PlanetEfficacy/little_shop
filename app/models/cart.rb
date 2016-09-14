@@ -39,6 +39,10 @@ class Cart
     quantity(item_id) * price(item_id)
   end
 
+  def has_more_than_one(item_id)
+    quantity(item_id) > 1
+  end
+
   def total_price
     # if contents.empty?
     #   "0.00"
