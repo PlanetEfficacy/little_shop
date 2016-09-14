@@ -6,6 +6,7 @@
     <p><%= item.title %></p>
     <p><%= item.description %></p>
     <p><%= number_to_currency(item.dollars) %></p>
+    <%= link_to "Remove", item_path(item), method: :delete %>
   </div>
 <% end %>
 
