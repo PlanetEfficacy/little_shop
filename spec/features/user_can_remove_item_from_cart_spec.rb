@@ -27,8 +27,11 @@ RSpec.feature "visitor can remove item from cart" do
 
     # And I should see a message styled in green
     # expect(flash[:success][:style]).to match(/color: green/)
-    # And the message should say "Successfully removed SOME_ITEM from your cart."
     # And the title "SOME_ITEM" should be a link to that item in case the user wants to add it back
+    # expect(flash[:success]).to be_present
+
+
+    # And the message should say "Successfully removed SOME_ITEM from your cart."
     expect(page).to have_content("Successfully removed Paperclip from your cart.")
     # And I should not see the item listed in cart
     within(".invoice_item") do
