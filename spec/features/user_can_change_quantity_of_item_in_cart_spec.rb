@@ -19,7 +19,6 @@ RSpec.feature "visitor can change quantity of item in the cart" do
     # Background: Cart has an item in it
     Fabricate(:item)
     visit items_path
-    save_and_open_page
     click_on "Add to Cart"
 
 
