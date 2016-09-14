@@ -15,6 +15,16 @@ class CartsController < ApplicationController
   end
 
   def index
+  end
 
+  def edit
+  # {"_method"=>"put", "change_quantity"=>"increase", "item_id"=>"6", "controller"=>"carts", "action"
+    item = Item.find(params[:item_id])
+    if params[:change_quantity] == 'increase'
+      @cart.increase_quantity(item.id)
+    elsif params[:change_quantity] == 'decrease'
+      @cart.decrease_quantity(item.id)
+    end
+    redirect_to cart_path
   end
 end
