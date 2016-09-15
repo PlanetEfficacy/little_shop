@@ -3,44 +3,40 @@
 <head>
   <title>The Waddams Emporium</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
-
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  </div>
+
 <div class="container">
-  <nav class="navbar navbar-default navbar-static-top">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/photos">Waddams Emporium</a>
-      </div>
-      <div class='collapse navbar-collapse' id='my-nav'>
-          <ul class="nav navbar-nav navbar-right">
-            <li></li>
-            <li>
-              <% if logged_in? %>
-                <%= link_to "Logout", logout_path, method: :delete,  class: "nav-item nav-link"%>
-              <% else %>
-                <%= link_to "Login", login_path, class: "nav-item nav-link"%>
-              <% end %>
-            </li>
-          </ul>
-      </div>
-    </div>
-  </nav>
+  <div class="nav">
+    <ul class="nav nav-tabs">
+      <a class="navbar-brand" href="/">Waddams Emporium</a>
+      <li role="presentation">
+        <% if logged_in? %>
+        <%= link_to "Logout", logout_path, method: :delete,  class: "nav-item nav-link"%>
+        <% else %>
+        <%= link_to "Login", login_path, class: "nav-item nav-link"%>
+        <%= link_to "Create Account", new_user_path, class: "nav-item nav-link"%>
+        <% end %>
+      </li>
+    </ul>
+  </div>
 </div>
 
 <% flash.each do |type, msg| %>
-  <%= content_tag(:div, msg, class: "alert alert-#{type}") %>
+  <%= content_tag(:div, sanitize(msg), class: "alert alert-#{type}") %>
 <% end %>
 
-<%= yield %>
+<div class="jumbotron">
+  <div class="container">
+    <h1>the waddams emporium</h1>
+  </div>
+</div>
+<div class="container">
+  <%= yield %>
+</div>
 
 </body>
 </html>

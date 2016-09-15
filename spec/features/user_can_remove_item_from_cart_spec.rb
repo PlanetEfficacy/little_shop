@@ -25,14 +25,15 @@ RSpec.feature "visitor can remove item from cart" do
     # Then my current page should be "/cart"
     expect(current_path).to eq('/cart')
 
-    # And I should see a message styled in green
     # expect(flash[:success][:style]).to match(/color: green/)
-    # And the title "SOME_ITEM" should be a link to that item in case the user wants to add it back
+
     # expect(flash[:success]).to be_present
 
-
+    # And I should see a message styled in green
     # And the message should say "Successfully removed SOME_ITEM from your cart."
     expect(page).to have_content("Successfully removed Paperclip from your cart.")
+    # And the title "SOME_ITEM" should be a link to that item in case the user wants to add it back
+    expect(page).to have_link("#{item.title}", :href => "/items/#{item.id}")
     # And I should not see the item listed in cart
     within(".invoice_item") do
       expect(page).not_to have_content("Paperclip")
