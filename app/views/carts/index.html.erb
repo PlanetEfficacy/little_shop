@@ -4,8 +4,8 @@
 
 <div class="invoice_item">
 <% @cart.items.each do |item| %>
-    <div class="thumbnail">
-      <%= link_to image_tag(item.image_url), item_path(item) %>
+    <div>
+      <%= link_to image_tag(item.image_url, class: 'thumbnail' ), item_path(item)%>
     </div>
     <p>Title: <%= item.title %></p>
     <p>Description: <%= item.description %></p>
