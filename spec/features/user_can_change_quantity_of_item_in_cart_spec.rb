@@ -10,7 +10,6 @@ RSpec.feature "visitor can change quantity of item in the cart" do
     # When I visit "/cart"
     visit cart_path
     # Then I should see my item with a quantity of 1
-    # save_and_open_page
     within(".invoice_item") do
       expect(page).to have_content(item.title)
       expect(page).to have_content("Quantity: 1")

@@ -19,7 +19,6 @@ RSpec.feature "guest user must create account to Checkout" do
 
     click_on "Login or Create Account to Checkout"
 
-    save_and_open_page
 
     expect(current_path).to eq(login_path)
 
