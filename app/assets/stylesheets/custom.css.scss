@@ -1,3 +1,13 @@
+html {
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+body{
+  font-family: "Sans-Serif";
+  background: white;
+}
+
 .jumbotron {
 background-image: url("https://hd.unsplash.com/photo-1432821596592-e2c18b78144f");
 background-size: cover;
@@ -6,7 +16,7 @@ background-size: cover;
 .jumbotron h1 {
   text-align: center;
   color: white;
-  // font-family: "Courier New";
+  font-family: "Courier New";
 }
 
 img.thumbnail {
