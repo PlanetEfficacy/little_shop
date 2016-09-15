@@ -1,12 +1,21 @@
+<% unless logged_in? %>
+  <%= link_to "Login or Create Account to Checkout", login_path %>
+<% end %>
 
 <div class="invoice_item">
 <% @cart.items.each do |item| %>
     <div class="thumbnail">
       <%= link_to image_tag(item.image_url), item_path(item) %>
     </div>
-    <p><%= item.title %></p>
-    <p><%= item.description %></p>
-    <p><%= number_to_currency(item.dollars) %></p>
+    <p>Title: <%= item.title %></p>
+    <p>Description: <%= item.description %></p>
+    <p>Price: <%= number_to_currency(item.dollars) %></p>
+    <p>Quantity: <%= @cart.quantity(item.id) %></p>
+    <p>Subtotal: <%= number_to_currency(@cart.subtotal(item.id)) %> </p>
+    <%= button_to "+", cart_path(item_id: item.id, change_quantity: "increase"), method: :put %>
+    <% if @cart.has_more_than_one(item.id) %>
+      <%= button_to "-", cart_path(item_id: item.id, change_quantity: "decrease"), method: :put %>
+    <% end %>
   <%= link_to "Remove", cart_path(item_id: item.id), method: :delete %>
 <% end %>
 </div>
