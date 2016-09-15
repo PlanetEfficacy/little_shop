@@ -19,16 +19,18 @@ RSpec.feature "guest user must create account to Checkout" do
 
     click_on "Login or Create Account to Checkout"
 
+    save_and_open_page
+
     expect(current_path).to eq(login_path)
 
-    click_on "Create Account"
+    click_link "Create Account"
 
     expect(current_path).to eq(new_user_path)
 
     fill_in "Username", with: "Kevin1"
     fill_in "Password", with: "password1"
     fill_in "Password confirmation", with: "password1"
-    click_on "Create Account"
+    click_button "Create Account"
 
     # if there is something in the cart whenever you create an account, after you create the account, we send you to your cart
     visit cart_path
