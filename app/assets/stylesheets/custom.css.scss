@@ -1,0 +1,21 @@
+html {
+text-rendering: optimizeLegibility !important;
+-webkit-font-smoothing: antialiased !important;
+}
+
+body{
+  font-family: "Courier New";
+  background: white;
+}
+.col-md-4 item{
+  padding: 50px;
+}
+.jumbotron {
+background-image: url("https://hd.unsplash.com/photo-1432821596592-e2c18b78144f");
+background-size: cover;
+}
+
+.jumbotron h1 {
+  text-align: center;
+  color: white;
+}
