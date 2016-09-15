@@ -15,13 +15,13 @@ RSpec.feature "visitor can create an account" do
   scenario "visitor sees dashboard with own profile information and a logout button" do
 
     visit login_path
-    click_on "Create Account"
+    click_link "Create Account"
     expect(current_path).to eq (new_user_path)
     # fill_in "Name", with: "Kevin"
     fill_in "Username", with: "Kevin1"
     fill_in "Password", with: "password1"
     fill_in "Password confirmation", with: "password1"
-    click_on "Create Account"
+    click_button "Create Account"
     expect(current_path).to eq(dashboard_index_path)
     # flash message?
     expect(page).to have_content("Logged in as Kevin1")
