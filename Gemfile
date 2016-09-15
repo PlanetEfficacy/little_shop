@@ -23,7 +23,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
+gem 'bootstrap', '~> 4.0.0.alpha4'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -38,8 +38,10 @@ group :development, :test do
   gem 'launchy'
   gem 'byebug'
   gem 'pry'
-  gem 'mocha'
+  # gem 'mocha'
   gem 'rspec-rails'
+  gem 'fabrication'
+  gem 'faker'
 end
 
 group :development do
