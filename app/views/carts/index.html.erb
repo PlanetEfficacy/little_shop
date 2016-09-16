@@ -24,3 +24,7 @@
 <div class="invoice_total">
   <p>Total: <%= number_to_currency(@cart.total_price) %></p>
 </div>
+
+ <% if logged_in? %>
+  <%= link_to "Checkout", orders_path, method: :post %>
+<% end %>

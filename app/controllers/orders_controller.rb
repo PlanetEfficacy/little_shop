@@ -7,4 +7,9 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @items = @order.items
   end
+
+  def create
+    # cart = session[:cart]
+    #basically want the Order object to possibly be initialized with the cart contents?
+  end
 end
