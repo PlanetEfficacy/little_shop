@@ -1,21 +1,45 @@
 require 'rails_helper'
 
 RSpec.feature "authenticated user security" do
-  scenario "a registered user gets a 404 when visiting admin/dashboard" do
-      # As a registered user
-      user = Fabricate(:user)
+  scenario "authenticated users cannot view another user's private data" do
+      # As an authenticated user
+      order_1 = Fabricate(:order)
+      order_2 = Fabricate(:order)
+      user = order_1.user
+
       visit login_path
       fill_in "Username", with: user.username
       fill_in "Password", with: user.password
       click_button "Login"
-      # When I visit "/admin/dashboard"
-      visit admin_dashboard_path
-      # I get a 404
-      expect(page.status_code).to be(404)
+      # I cannot view another user's private data (current or past orders, etc)
+      visit orders_path
 
-      within ".panel-danger" do
-        expect(page).to have_content("The page you were looking for doesn't exist.")
-        expect(page).to have_link("Back to the Waddams Emporium")
+      within ".table" do
+        expect(page).to have_css("td", :text => order_1.id)
+        expect(page).to_not have_css("td", :text => order_2.id)
       end
   end
+
+  # scenario "authenticated users cannot view another user's private data" do
+  #     # As an authenticated user
+  #     order_1 = Fabricate(:order)
+  #     order_2 = Fabricate(:order)
+  #     user = order_1.user
+  #
+  #     visit login_path
+  #     fill_in "Username", with: user.username
+  #     fill_in "Password", with: user.password
+  #     click_button "Login"
+  #     # I cannot view the adminsitrator screens or use admin functionality
+  #     visit orders_path
+  #
+  #     within ".table" do
+  #       expect(page).to have_css("td", :text => order_1.id)
+  #       expect(page).to_not have_css("td", :text => order_2.id)
+  #     end
+  # end
+
+
 end
+#
+# I cannot make myself an admin
