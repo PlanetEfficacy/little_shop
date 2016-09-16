@@ -1,19 +1,21 @@
 
 
-<h2>All Items</h2>
+<h2 class="item_header">All Items</h2>
 
-<div class="row">
-  <div class="col-md-4"><% @items.each do |item| %>
-  <h4><%= item.title.capitalize %></h4>
-    <div class="item">
-      <p><%= number_to_currency(item.dollars) %></p>
-      <p><%= image_tag item.image_url, class: 'thumbnail' %></p>
-      <p><%= button_to "Add to Cart", cart_path(item_id: item.id), class: 'btn-btn-success'  %></p>
-    </div>
-  <% end %>
+<% @items.in_groups_of(3, false).each do |group| %>
+  <div class="row">
+    <% group.each do |item| %>
+      <div class="col-md-4">
+        <div class="item">
+          <h5><%= item.title.capitalize %></h5>
+          <p><%= link_to(image_tag(item.image_url), item_path(item), class: "thumbnail") %></p>
+          <p><%= number_to_currency(item.dollars) %></p>
+          <p><%= button_to "Add to Cart", cart_path(item_id: item.id), class: 'btn btn-primary btn-sm'  %></p>
+        </div>
+      </div>
+    <% end %>
   </div>
-
-</div>
+<% end %>
 
 
 
