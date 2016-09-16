@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:index]
 
 
-  resources :dashboard, only: [:index]
+  resource :dashboard, only: [:show]
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
