@@ -2,4 +2,8 @@
 <%= number_to_currency(@item.dollars) %>
 <%= image_tag @item.image_url %>
 
-<%= button_to "Add to Cart", cart_path(item_id: @item.id) %>
+<% if @item.retired? %>
+  <div class="label label-warning">Item Retired</div>
+<% else %>
+  <%= button_to "Add to Cart", cart_path(item_id: @item.id) %>
+<% end %>

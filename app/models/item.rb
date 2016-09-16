@@ -7,4 +7,12 @@ class Item < ActiveRecord::Base
   def dollars
     BigDecimal(price / 100.0, price.to_s.length + 2)
   end
+
+  def retired?
+    retired
+  end
+
+  def retire
+    update_attribute(:retired, true)
+  end
 end

@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
 
   has_many :orders
 
+  enum role: %w(user admin)
 end

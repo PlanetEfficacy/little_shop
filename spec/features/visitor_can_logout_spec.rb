@@ -15,7 +15,7 @@ RSpec.feature "visitor can logout" do
     fill_in "Password", with: "password"
     click_button "Login"
 
-    expect(current_path).to eq(dashboard_index_path)
+    expect(current_path).to eq(dashboard_path)
     expect(page).to have_content("Logout")
     expect(page).to have_no_content("Login")
     # When I click "Logout"
@@ -37,7 +37,7 @@ RSpec.feature "visitor can logout" do
     fill_in "Password", with: "password"
     click_button "Login"
 
-    expect(current_path).to eq(dashboard_index_path)
+    expect(current_path).to eq(dashboard_path)
     expect(page).to have_content("Logout")
     expect(page).to have_no_content("Login")
     # When I click "Logout"
