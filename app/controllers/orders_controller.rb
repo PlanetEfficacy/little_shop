@@ -9,7 +9,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # cart = session[:cart]
-    #basically want the Order object to possibly be initialized with the cart contents?
+    @cart = session[:cart]
+    @user = current_user
+    order_compiler = OrderCompiler.new(@cart, @user)
   end
 end
