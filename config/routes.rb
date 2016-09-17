@@ -4,12 +4,13 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :show]
 
-  resources :orders, only: [:index, :show]
+  resources :orders, only: [:index, :show, :create]
 
   resource :dashboard, only: [:show]
 
   namespace :admin do
     resource :dashboard, only: [:show]
+    resource :user, only: [:edit, :update]
   end
 
   get '/login', to: 'sessions#new'

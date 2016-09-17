@@ -13,8 +13,8 @@
 
 require 'rails_helper'
 
-RSpec.feature "visitor can remove item from cart" do
-  scenario "visitor doesn't see the item in the cart after removing" do
+RSpec.feature "user can view a past order" do
+  scenario "user can view a past order" do
     # As an authenticated user
     # user = Fabricate(:user)
 

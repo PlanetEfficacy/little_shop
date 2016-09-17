@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+
   def create
     item = Item.find(params[:item_id])
     @cart.add_item(item.id)
@@ -10,9 +11,7 @@ class CartsController < ApplicationController
   def destroy
     item = Item.find(params[:item_id])
     @cart.remove_item(item.id)
-    #need to make item.title into a link
     flash[:success] = "Successfully removed #{view_context.link_to(item.title, item_path(item))} from your cart."
-    # flash[:success] = "Successfully removed #{item.title} from your cart.".html_safe
     redirect_to cart_path
   end
 
