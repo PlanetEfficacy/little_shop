@@ -8,4 +8,8 @@ class Admin::DashboardsController < ApplicationController
 
     end
   end
+
+  def show
+    @user = current_user
+  end
 end

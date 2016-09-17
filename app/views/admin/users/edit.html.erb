@@ -1,0 +1,25 @@
+<%= form_for [:admin, @user] do |f| %>
+  <div class="form-group text-left">
+    <%= f.label :username %>
+    <%= f.text_field :username, :class => "form-control", :value => @user.username %>
+  </div>
+
+  <div class="form-group text-left">
+    <%= f.label :current_password %>
+    <%= f.password_field :current_password, :class => "form-control" %>
+  </div>
+
+  <div class="form-group text-left">
+    <%= f.label :new_password %>
+    <%= f.password_field :new_password, :class => "form-control" %>
+  </div>
+
+  <div class="form-group text-left">
+    <%= f.label :confirm_new_password %>
+    <%= f.password_field :confirm_new_password, :class => "form-control" %>
+  </div>
+
+  <div class=btn-group>
+    <%= f.submit "Update", :class => "btn btn-primary", method: :patch %>
+  </div>
+<% end %>
