@@ -15,5 +15,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    # redirect_to login_path if !logged_in?
+    binding.pry
   end
 end

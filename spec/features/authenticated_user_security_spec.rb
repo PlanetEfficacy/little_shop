@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature "authenticated user security" do
-  scenario "authenticated users cannot view another user's private data" do
+RSpec.feature "authenticated user" do
+  scenario "cannot view another user's private data" do
     # As an authenticated user
     order_1 = Fabricate(:order)
     order_2 = Fabricate(:order)
@@ -20,7 +20,7 @@ RSpec.feature "authenticated user security" do
     end
   end
 
-  scenario "authenticated users cannot view admin screens and functionality" do
+  scenario "cannot view admin screens and functionality" do
     # As an authenticated user
     user = Fabricate(:user)
 
@@ -34,7 +34,7 @@ RSpec.feature "authenticated user security" do
     expect(page.status_code).to be(404)
   end
 
-  scenario "authenticated user cannot make themselves an admin" do
+  scenario "cannot make themselves an admin" do
     # As an authenticated user
     user = Fabricate(:user)
     visit login_path
