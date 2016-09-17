@@ -8,7 +8,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  </div>
 
 <div class="container">
   <div class="nav">
@@ -16,10 +15,15 @@
       <a class="navbar-brand" href="/">Waddams Emporium</a>
       <li role="presentation">
         <% if logged_in? %>
-        <%= link_to "Logout", logout_path, method: :delete,  class: "nav-item nav-link"%>
+          <%= link_to "Logout", logout_path, method: :delete,  class: "nav-item nav-link"%>
         <% else %>
-        <%= link_to "Login", login_path, class: "nav-item nav-link"%>
-        <%= link_to "Create Account", new_user_path, class: "nav-item nav-link"%>
+          <%= link_to "Login", login_path, class: "nav-item nav-link"%>
+          <%= link_to "Create Account", new_user_path, class: "nav-item nav-link"%>
+        <% end %>
+      </li>
+      <li role="presentation">
+        <% if !cart_empty? %>
+          <%= link_to "Cart", cart_path %>
         <% end %>
       </li>
     </ul>
