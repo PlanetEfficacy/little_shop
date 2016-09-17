@@ -2,11 +2,11 @@
 
 <table class="table">
   <tr>
-    <th>Item</th>
+    <th>Items</th>
   </tr>
   <% @items.each do |item| %>
   <tr>
-    <%= link_to item.title, item_path(item) %>
+    <td><%= link_to item.title, item_path(item) %></td>
   </tr>
   <% end %>
 </table>
