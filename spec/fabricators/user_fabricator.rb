@@ -1,6 +1,4 @@
 Fabricator(:user) do
-  username "username"
+  username { Faker::Name.name + (Faker::Number.between(1, 9)).to_s }
   password "password"
-
-  # orders (count: 2)
 end
