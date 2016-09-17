@@ -1,5 +1,5 @@
 class OrderCompiler
-  attr_reader :cart, :item_order, :order
+  attr_reader :cart, :order
 
   def initialize(cart, current_user)
     @cart = cart

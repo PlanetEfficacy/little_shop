@@ -11,6 +11,8 @@ class OrdersController < ApplicationController
   def create
     @cart = session[:cart]
     @user = current_user
-    order_compiler = OrderCompiler.new(@cart, @user)
+    OrderCompiler.new(@cart, @user)
+    flash[:success] = "Order was successfully placed."
+    redirect_to orders_path
   end
 end

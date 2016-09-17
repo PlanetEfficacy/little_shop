@@ -29,8 +29,7 @@ RSpec.feature "logged in user can checkout and unlogged in user cannot" do
   # And I should see a message "Order was successfully placed"
   expect(page).to have_content("Order was successfully placed")
   # And I should see the order I just placed in a table
-  expect(page).to have_content(user.orders.last.items.first.title)
-
+  expect(page).to have_content(user.orders.first.id)
   end
 
 end
