@@ -29,4 +29,15 @@ RSpec.describe Item, type: :model do
     expect(item.dollars).to eq(5000.01)
     expect(item.dollars).to be_an_instance_of(BigDecimal)
   end
+
+  it 'is not retired by default' do
+    item = Fabricate(:item)
+    expect(item.retired?).to eq(false)
+  end
+
+  it 'can be retired' do
+    item = Fabricate(:item)
+    item.retire
+    expect(item.retired?).to eq(true)
+  end
 end

@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_cart
-  helper_method :current_user, :logged_in?
+  helper_method :current_user,
+                :logged_in?,
+                :logged_in_with_cart_items?,
+                :cart_empty?
 
   def set_cart
     @cart = Cart.new(session[:cart])
@@ -11,8 +14,23 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  def current_admin?
+    current_user && current_user.admin?
+  end
+
+  def current_default_user?
+    current_user && !current_user.admin?
+  end
 
   def logged_in?
     !!current_user
+  end
+
+  def cart_empty?
+    session[:cart] && session[:cart].values.sum == 0
+  end
+
+  def logged_in_with_cart_items?
+    logged_in? && !cart_empty?
   end
 end

@@ -15,10 +15,9 @@ RSpec.feature "guest user must create account to Checkout" do
     click_on "Add to Cart"
     visit cart_path
 
-    expect(page).to_not have_link("Checkout", exact: true)
+    expect(page).to_not have_button("Checkout", exact: true)
 
     click_on "Login or Create Account to Checkout"
-
 
     expect(current_path).to eq(login_path)
 
