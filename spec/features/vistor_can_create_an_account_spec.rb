@@ -22,7 +22,7 @@ RSpec.feature "visitor can create an account" do
     fill_in "Password", with: "password1"
     fill_in "Password confirmation", with: "password1"
     click_button "Create Account"
-    expect(current_path).to eq(dashboard_index_path)
+    expect(current_path).to eq(dashboard_path)
     # flash message?
     expect(page).to have_content("Logged in as Kevin1")
     expect(page).to_not have_link("Login")
