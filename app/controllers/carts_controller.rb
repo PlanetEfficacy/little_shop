@@ -20,7 +20,6 @@ class CartsController < ApplicationController
   end
 
   def edit
-  # {"_method"=>"put", "change_quantity"=>"increase", "item_id"=>"6", "controller"=>"carts", "action"
     item = Item.find(params[:item_id])
     if params[:change_quantity] == 'increase'
       @cart.increase_quantity(item.id)
@@ -29,10 +28,4 @@ class CartsController < ApplicationController
     end
     redirect_to cart_path
   end
-
-  # def item_alert_link
-  #   item = Item.find(params[:item_id])
-  #   "<a href='#{item_path(item)}' class='alert-link'>'#{item.title}'</a>"
-  # end
-
 end
