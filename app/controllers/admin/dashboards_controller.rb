@@ -11,5 +11,6 @@ class Admin::DashboardsController < ApplicationController
 
   def show
     @user = current_user
+    @orders = Order.all
   end
 end
