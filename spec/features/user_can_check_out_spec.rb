@@ -22,7 +22,7 @@ RSpec.feature "logged in user can checkout and unlogged in user cannot" do
   # And I visit my cart
   click_on "View Cart"
   # And when I click "Checkout"
-  click_on "Checkout"
+  click_button "Checkout"
   # Then the order should be placed --> MAGIC
   # And my current page should be "/orders"
   expect(current_path).to eq "/orders"
