@@ -1,17 +1,17 @@
 <h1>Your Order</h1>
 
-<table class="table">
+<table class="table order_items">
   <tr>
     <th>Items</th>
   </tr>
   <% @items.each do |item| %>
-  <tr>
-    <td><%= link_to item.title, item_path(item) %></td>
-  </tr>
+    <tr>
+      <td><%= link_to item.title, item_path(item) %></td>
+    </tr>
   <% end %>
 </table>
 
-<table class="table">
+<table class="table order_info">
   <tr>
     <th>Status: </th>
     <td><%= @order.status %></td>

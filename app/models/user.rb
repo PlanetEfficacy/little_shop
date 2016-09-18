@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
                        uniqueness: true
 
   has_many :orders
+  has_one :user_profile
 
   enum role: %w(user admin)
 end
