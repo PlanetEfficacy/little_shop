@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   namespace :admin do
     resource :dashboard, only: [:show]
     resource :user, only: [:edit, :update]
+    get 'orders/ordered', to: 'orders#index'
+    get 'orders/paid', to: 'orders#index'
+    get 'orders/cancelled', to: 'orders#index'
+    get 'orders/completed', to: 'orders#index'
   end
 
   get '/login', to: 'sessions#new'
