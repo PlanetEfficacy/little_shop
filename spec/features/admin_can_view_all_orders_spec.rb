@@ -1,13 +1,17 @@
 require 'rails_helper'
 
-RSpec.feature "admin cannot see dashboard" do
+RSpec.feature "admin can see dashboard" do
+  before(:each) do
+
+  end
+
   scenario "with all orders" do
-    # As a logged in Admin
-    admin = Fabricate(:user, role: 1)
     order1 = Fabricate(:order, status: 0)
     order2 = Fabricate(:order, status: 1)
     order3 = Fabricate(:order, status: 2)
     order4 = Fabricate(:order, status: 3)
+    # As a logged in Admin
+    admin = Fabricate(:user, role: 1)
 
     visit login_path
     fill_in "Username", with: admin.username
@@ -39,5 +43,82 @@ RSpec.feature "admin cannot see dashboard" do
     expect(page).to have_link("mark as paid")
     # - I can click on "mark as completed" on orders that are "paid"
     expect(page).to have_link("mark as completed")
+  end
+
+  scenario "and click to see ordered items" do
+    order1 = Fabricate(:order, status: 0)
+    order2 = Fabricate(:order, status: 0)
+
+    admin = Fabricate(:user, role: 1)
+    # As a logged in Admin
+
+    visit login_path
+    fill_in "Username", with: admin.username
+    fill_in "Password", with: admin.password
+    click_button "Login"
+    # And I can filter orders to display by each status type ("Ordered", "Paid", "Cancelled", "Completed")
+    click_link "Ordered"
+    expect(current_path).to eq(admin_orders_ordered_path)
+    expect(page).to have_content(order1.id)
+    expect(page).to have_content(order2.id)
+  end
+
+  scenario "and click to see paid items" do
+    # And I can filter orders to display by each status type ("Ordered", "Paid", "Cancelled", "Completed")
+    order1 = Fabricate(:order, status: 1)
+    order2 = Fabricate(:order, status: 1)
+
+    admin = Fabricate(:user, role: 1)
+    # As a logged in Admin
+
+    visit login_path
+    fill_in "Username", with: admin.username
+    fill_in "Password", with: admin.password
+    click_button "Login"
+    # And I can filter orders to display by each status type ("Ordered", "Paid", "Cancelled", "Completed")
+    click_link "Paid"
+    expect(current_path).to eq(admin_orders_paid_path)
+    expect(page).to have_content(order1.id)
+    expect(page).to have_content(order2.id)
+  end
+
+  scenario "and click to see cancelled items" do
+    # And I can filter orders to display by each status type ("Ordered", "Paid", "Cancelled", "Completed")
+    # And I can filter orders to display by each status type ("Ordered", "Paid", "Cancelled", "Completed")
+    order1 = Fabricate(:order, status: 2)
+    order2 = Fabricate(:order, status: 2)
+
+    admin = Fabricate(:user, role: 1)
+    # As a logged in Admin
+
+    visit login_path
+    fill_in "Username", with: admin.username
+    fill_in "Password", with: admin.password
+    click_button "Login"
+    # And I can filter orders to display by each status type ("Ordered", "Paid", "Cancelled", "Completed")
+    click_link "Cancelled"
+    expect(current_path).to eq(admin_orders_cancelled_path)
+    expect(page).to have_content(order1.id)
+    expect(page).to have_content(order2.id)
+  end
+
+  scenario "and click to see completed items" do
+    # And I can filter orders to display by each status type ("Ordered", "Paid", "Cancelled", "Completed")
+    # And I can filter orders to display by each status type ("Ordered", "Paid", "Cancelled", "Completed")
+    order1 = Fabricate(:order, status: 3)
+    order2 = Fabricate(:order, status: 3)
+
+    admin = Fabricate(:user, role: 1)
+    # As a logged in Admin
+
+    visit login_path
+    fill_in "Username", with: admin.username
+    fill_in "Password", with: admin.password
+    click_button "Login"
+    # And I can filter orders to display by each status type ("Ordered", "Paid", "Cancelled", "Completed")
+    click_link "Completed"
+    expect(current_path).to eq(admin_orders_completed_path)
+    expect(page).to have_content(order1.id)
+    expect(page).to have_content(order2.id)
   end
 end
