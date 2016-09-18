@@ -5,6 +5,4 @@ Fabricator(:user_profile) do
   city  { Faker::Address.city }
   state { Faker::Address.state }
   zipcode { Faker::Address.zip }
-
-  user
 end

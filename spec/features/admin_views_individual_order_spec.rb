@@ -11,19 +11,20 @@ RSpec.feature "admin views order" do
     fill_in "Username", with: admin.username
     fill_in "Password", with: admin.password
     click_button "Login"
-    item_order = Fabricate(:item_order)
-    order = item_order.order
-    item  = item_order.item
+
+    order = Fabricate(:order)
     # As an authenticated Admin, when I visit an individual order page
     visit order_path(order)
     # Then I can see the order's date and time.
     expect(page).to have_content(order.created_at)
     # And I can see the purchaser's full name and address.
-    expect(page).to have_content(order.user.full_name)
-    expect(page).to have_content(order.user.address)
+    expect(page).to have_content(order.user.user_profile.full_name)
+    expect(page).to have_content(order.user.user_profile.address)
 
     # And I can see, for each item on the order:
     within(".order_items") do
+      item = order.items.first
+      item_order = order.item_orders.first
       # - The item's name, which is linked to the item page.
       expect(page).to have_link(item.title, href: item_path(item))
       # - Quantity in this order.
@@ -40,5 +41,6 @@ RSpec.feature "admin views order" do
       # And I can see the status for the order.
       expect(page).to have_content(order.status)
     end
+    save_and_open_page
   end
 end
