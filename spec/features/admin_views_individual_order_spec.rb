@@ -13,6 +13,7 @@ RSpec.feature "admin views order" do
     click_button "Login"
 
     order = Fabricate(:order)
+    expect(order.user).to_not eq(admin)
     # As an authenticated Admin, when I visit an individual order page
     visit order_path(order)
     # Then I can see the order's date and time.
@@ -41,6 +42,5 @@ RSpec.feature "admin views order" do
       # And I can see the status for the order.
       expect(page).to have_content(order.status)
     end
-    save_and_open_page
   end
 end
