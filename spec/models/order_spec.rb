@@ -8,4 +8,13 @@ RSpec.describe Order, type: :model do
     it { should have_many(:items)}
   end
 
+  context 'status' do
+    let(:order) { [:ordered, :paid, :cancelled, :completed] }
+
+    it 'has the right enum index' do
+      order.each_with_index do |item, index|
+        expect(described_class.statuses[item]).to eq index
+      end
+    end
+  end
 end

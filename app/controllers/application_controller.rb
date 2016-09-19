@@ -33,4 +33,8 @@ class ApplicationController < ActionController::Base
   def logged_in_with_cart_items?
     logged_in? && !cart_empty?
   end
+
+  def require_user
+    redirect_to login_path if !logged_in?
+  end
 end

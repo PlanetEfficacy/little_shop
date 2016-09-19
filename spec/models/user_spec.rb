@@ -7,6 +7,8 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_secure_password }
     it { should have_many(:orders) }
     it { should have_one(:user_profile) }
+    it { should validate_confirmation_of(:password).
+      with_message('Please re-enter your password') }
   end
 
   it "is a standard user by default" do
@@ -18,11 +20,4 @@ RSpec.describe User, type: :model do
     user = User.create(username: 'admin', password: 'admin', role: 1)
     expect(user.admin?).to eq(true)
   end
-
-  # it 'has a full name' do
-  #   user = Fabricate(:user)
-  #   profile = user.user_profile
-  #   expect(user.full_name).to eq("#{profile.first_name} #{profile.last_name}")
-  #
-  # end
 end

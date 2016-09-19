@@ -5,5 +5,4 @@ class ItemOrder < ActiveRecord::Base
   def subtotal
     item.dollars * quantity
   end
-
 end
