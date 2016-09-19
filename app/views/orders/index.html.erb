@@ -1,3 +1,19 @@
 <div class="orders">
-
+  <h1>Past Orders</h1>
+  <table class="table table-hover">
+    <tr>
+      <th>Order number</th>
+      <th>Order total</th>
+      <th>Order status</th>
+      <th>View order</th>
+    </tr>
+    <% @orders.each do |order|  %>
+      <tr>
+        <td><%= order.id %></td>
+        <td><%= order.total %></td>
+        <td><%= order.status %></td>
+        <td><%= link_to "View", order_path(order) %></td>
+      </tr>
+    <% end %>
+  </table>
 </div>

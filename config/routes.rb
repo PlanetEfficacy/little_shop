@@ -4,10 +4,18 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :show]
 
-  resources :orders, only: [:index]
+  resources :orders, only: [:index, :show, :create]
 
+  resource :dashboard, only: [:show]
 
-  resources :dashboard, only: [:index]
+  namespace :admin do
+    resource :dashboard, only: [:show]
+    resource :user, only: [:edit, :update]
+    get 'orders/ordered', to: 'orders#index'
+    get 'orders/paid', to: 'orders#index'
+    get 'orders/cancelled', to: 'orders#index'
+    get 'orders/completed', to: 'orders#index'
+  end
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

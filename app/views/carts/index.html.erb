@@ -1,7 +1,3 @@
-<% unless logged_in? %>
-  <%= link_to "Login or Create Account to Checkout", login_path %>
-<% end %>
-
 <div class="invoice_item">
 <% @cart.items.each do |item| %>
     <div>
@@ -24,3 +20,9 @@
 <div class="invoice_total">
   <p>Total: <%= number_to_currency(@cart.total_price) %></p>
 </div>
+
+<% if logged_in? %>
+  <%= button_to "Checkout", orders_path %>
+<% else %>
+  <%= link_to "Login or Create Account to Checkout", login_path %>
+<% end %>

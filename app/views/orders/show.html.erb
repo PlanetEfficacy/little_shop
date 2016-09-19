@@ -1,0 +1,42 @@
+<h1>Your Order</h1>
+<div class="user_info container">
+  <h4><%= @order.user.user_profile.full_name %></h4>
+  <p><%= @order.user.user_profile.address %></p>
+</div>
+
+<table class="table order_items">
+  <tr>
+    <th>Items</th>
+  </tr>
+  <% @order.item_orders.each do |item_order| %>
+    <tr>
+      <td><%= link_to item_order.item.title, item_path(item_order.item) %></td>
+      <td><%= item_order.quantity %>
+      <td><%= item_order.item.dollars %>
+      <td><%= item_order.subtotal %>
+    </tr>
+  <% end %>
+</table>
+
+<table class="table order_info table-striped" >
+  <tr>
+    <th>Status: </th>
+    <td><%= @order.status %></td>
+  </tr>
+
+  <tr>
+    <th>Total: </th>
+    <td><%= @order.total %></td>
+  </tr>
+
+  <tr>
+    <th>Order Submitted: </th>
+    <td><%= @order.created_at %></td>
+  </tr>
+
+  <tr>
+    <th>Completed On: </th>
+    <td><%= @order.updated_at %></td>
+  </tr>
+
+</table>

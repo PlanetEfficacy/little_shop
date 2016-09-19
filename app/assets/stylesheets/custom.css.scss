@@ -8,6 +8,20 @@ body{
   background: white;
 }
 
+.item {
+  text-align: center;
+  margin-top: 2em;
+}
+
+.item h5 {
+  font-family: 'Quattrocento'
+}
+
+h2.item_header {
+  font-family: 'Quattrocento';
+  text-align: center;
+}
+
 .jumbotron {
 background-image: url("https://hd.unsplash.com/photo-1432821596592-e2c18b78144f");
 background-size: cover;
@@ -20,5 +34,5 @@ background-size: cover;
 }
 
 img.thumbnail {
-  height: 100px;
+  height: 5px;
 }

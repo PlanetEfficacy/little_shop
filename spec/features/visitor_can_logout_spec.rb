@@ -7,15 +7,15 @@ require 'rails_helper'
 
 RSpec.feature "visitor can logout" do
   scenario "visitor can logout from item index page" do
-    user = User.create(username: "kevin_user", password: "password")
+    user = Fabricate(:user)
     # As a logged in user
     visit root_path
     click_link "Login"
-    fill_in "Username", with: "kevin_user"
-    fill_in "Password", with: "password"
+    fill_in "Username", with: user.username
+    fill_in "Password", with: user.password
     click_button "Login"
 
-    expect(current_path).to eq(dashboard_index_path)
+    expect(current_path).to eq(dashboard_path)
     expect(page).to have_content("Logout")
     expect(page).to have_no_content("Login")
     # When I click "Logout"
@@ -28,16 +28,18 @@ RSpec.feature "visitor can logout" do
   end
 
   scenario "visitor can logout from categories page" do
-    user = User.create(username: "kevin_user", password: "password")
-    category = Category.create(name: "x")
+    user = Fabricate(:user)
+    category = Fabricate(:category)
     # As a logged in user
     visit category_path(category)
+    # require "pry"; binding.pry
+
     click_link "Login"
-    fill_in "Username", with: "kevin_user"
-    fill_in "Password", with: "password"
+    fill_in "Username", with: user.username
+    fill_in "Password", with: user.password
     click_button "Login"
 
-    expect(current_path).to eq(dashboard_index_path)
+    expect(current_path).to eq(dashboard_path)
     expect(page).to have_content("Logout")
     expect(page).to have_no_content("Login")
     # When I click "Logout"
