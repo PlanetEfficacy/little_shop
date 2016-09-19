@@ -28,6 +28,14 @@ RSpec.feature "guest user must create account to Checkout" do
     fill_in "Username", with: "Kevin1"
     fill_in "Password", with: "password1"
     fill_in "Password confirmation", with: "password1"
+
+    fill_in "First name", with: "Kevin"
+    fill_in "Last name", with: "Smith"
+    fill_in "Street address", with: "123 Main St."
+    fill_in "City", with: "Anytown"
+    select "Ohio", :from => "state"
+    fill_in "Zipcode", with: "10001"
+
     click_button "Create Account"
 
     # if there is something in the cart whenever you create an account, after you create the account, we send you to your cart
