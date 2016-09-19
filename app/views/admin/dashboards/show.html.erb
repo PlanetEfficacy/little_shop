@@ -27,4 +27,6 @@
 <%= link_to "Cancelled", admin_orders_cancelled_path(:status => 2)  %>: <%= @orders.cancelled.count %></br>
 <%= link_to "Completed", admin_orders_completed_path(:status => 3)  %>: <%= @orders.completed.count %></br>
 
+
+<%= link_to "Create an Item", new_item_path %>
 <!-- iterate through all orders with a link to each order's show page -->
