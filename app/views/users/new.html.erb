@@ -13,6 +13,34 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
   </p>
+
+
+  <%= fields_for(@user_profile) do |u| %>
+    <p>
+      <%= u.label :first_name %>
+      <%= u.text_field :first_name %>
+    </p>
+    <p>
+      <%= u.label :last_name %>
+      <%= u.text_field :last_name %>
+    </p>
+    <p>
+      <%= u.label :street_address %>
+      <%= u.text_field :street_address %>
+    </p>
+    <p>
+      <%= u.label :city %>
+      <%= u.text_field :city %>
+    </p>
+    <p>
+      <%= u.label :state %>
+      <%= select_tag :state, options_for_select(us_states) %>
+    </p>
+    <p>
+      <%= u.label :zipcode %>
+      <%= u.text_field :zipcode %>
+    </p>
+  <% end %>
   <p>
     <%= f.submit "Create Account" %>
   </p>

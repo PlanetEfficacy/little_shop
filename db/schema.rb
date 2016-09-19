@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 20160918044319) do
   add_index "user_profiles", ["user_id"], name: "index_user_profiles_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
     t.string   "username"
     t.string   "password_digest"
     t.datetime "created_at",                  null: false
