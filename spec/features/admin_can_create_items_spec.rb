@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-    # - The price must be a valid decimal numeric value and greater than zero.
     # - The photo is optional. If not present, a stand-in photo is used. (PAPERCLIP)
 
 RSpec.feature "admin can create items" do
@@ -20,10 +19,11 @@ RSpec.feature "admin can create items" do
     expect(current_path).to eq(new_item_path)
     fill_in "Title", with: "ItemTitle"
     fill_in "Description", with: "ItemDescription"
-    fill_in "Price", with: 10945
+    fill_in "Price", with: 109.45
     check "#{@category_1.name}"
     click_button "Create New Item"
 
+    expect(page).to have_content
     expect(current_path).to eq(item_path(Item.last))
     expect(page).to have_content("Item was successfully saved.")
     expect(page).to have_content("ItemTitle")
@@ -33,7 +33,7 @@ RSpec.feature "admin can create items" do
 
   scenario "admin cannot create item without title" do
     fill_in "Description", with: "ItemDescription"
-    fill_in "Price", with: 10945
+    fill_in "Price", with: 109.45
     check "#{@category_1.name}"
     click_button "Create New Item"
     expect(current_path).to eq(new_item_path)
@@ -42,7 +42,7 @@ RSpec.feature "admin can create items" do
 
   scenario "admin cannot create item without description" do
     fill_in "Title", with: "ItemTitle"
-    fill_in "Price", with: 10945
+    fill_in "Price", with: 109.45
     check "#{@category_1.name}"
     click_button "Create New Item"
     expect(current_path).to eq(new_item_path)
@@ -53,7 +53,7 @@ RSpec.feature "admin can create items" do
     item = Fabricate(:item)
     fill_in "Title", with: item.title
     fill_in "Description", with: "ItemDescription"
-    fill_in "Price", with: 10945
+    fill_in "Price", with: 109.45
     check "#{@category_1.name}"
     click_button "Create New Item"
     expect(current_path).to eq(new_item_path)
@@ -69,6 +69,8 @@ RSpec.feature "admin can create items" do
     expect(current_path).to eq(new_item_path)
     expect(page).to have_content("Item could not be saved.")
   end
+
+
 
 
 

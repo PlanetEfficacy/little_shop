@@ -8,7 +8,7 @@ class Item < ActiveRecord::Base
   validates_numericality_of :price, greater_than: 0
 
   def dollars
-    BigDecimal(price / 100.0, price.to_s.length + 2)
+    price
   end
 
   def retired?

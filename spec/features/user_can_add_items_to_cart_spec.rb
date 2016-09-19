@@ -26,7 +26,7 @@ RSpec.feature "visitor can add item to cart and then see it in the cart" do
     end
     # And there should be a "total" price for the cart that should be the sum of all items in the cart
     within(".invoice_total") do
-      expect(page).to have_content("Total: $#{item.price / 100}")
+      expect(page).to have_content("Total: $#{item.price}")
     end
   end
 

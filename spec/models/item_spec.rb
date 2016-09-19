@@ -14,7 +14,7 @@ RSpec.describe Item, type: :model do
   end
 
   it 'can return its price in dollars' do
-    item = Item.create(title: "Paperclip", description: "This is an artisinal paperclip!", price: 500001, image_url: "http://tectonicablog.com/wp-content/uploads/2013/01/023-455x606.jpg")
+    item = Item.create(title: "Paperclip", description: "This is an artisinal paperclip!", price: 5000.01, image_url: "http://tectonicablog.com/wp-content/uploads/2013/01/023-455x606.jpg")
     expect(item.dollars).to eq(5000.01)
     expect(item.dollars).to be_an_instance_of(BigDecimal)
   end

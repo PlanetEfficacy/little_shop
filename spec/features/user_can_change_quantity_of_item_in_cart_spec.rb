@@ -25,11 +25,11 @@ RSpec.feature "visitor can change quantity of item in the cart" do
     end
     # And the subtotal for that item should increase
     within(".invoice_item") do
-      expect(page).to have_content("Subtotal: $#{2 * item.dollars}")
+      expect(page).to have_content("Subtotal: $#{2 * item.price}")
     end
     # And the total for the cart should match that increase
     within(".invoice_total") do
-      expect(page).to have_content("Total: $#{2 * item.dollars}")
+      expect(page).to have_content("Total: $#{2 * item.price}")
     end
     # And when I decrease the quantity
     click_on "-"
@@ -42,11 +42,11 @@ RSpec.feature "visitor can change quantity of item in the cart" do
     end
     # And the subtotal for that item should decrease
     within(".invoice_item") do
-      expect(page).to have_content("Subtotal: $#{item.dollars}")
+      expect(page).to have_content("Subtotal: $#{item.price}")
     end
     # And the total for the cart should match that decrease
     within(".invoice_total") do
-      expect(page).to have_content("Total: $#{item.dollars}")
+      expect(page).to have_content("Total: $#{item.price}")
     end
   end
 end
