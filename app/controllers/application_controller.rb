@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user,
                 :logged_in?,
                 :logged_in_with_cart_items?,
-                :cart_empty?
+                :cart_empty?,
+                :current_admin?
 
   def set_cart
     @cart = Cart.new(session[:cart])
