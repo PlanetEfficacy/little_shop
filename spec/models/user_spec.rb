@@ -20,11 +20,4 @@ RSpec.describe User, type: :model do
     user = User.create(username: 'admin', password: 'admin', role: 1)
     expect(user.admin?).to eq(true)
   end
-
-  # it 'has a full name' do
-  #   user = Fabricate(:user)
-  #   profile = user.user_profile
-  #   expect(user.full_name).to eq("#{profile.first_name} #{profile.last_name}")
-  #
-  # end
 end

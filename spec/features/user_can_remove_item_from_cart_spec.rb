@@ -41,7 +41,6 @@ RSpec.feature "visitor can remove item from cart" do
       expect(page).not_to have_content("$50.00")
     end
 
-
     within(".invoice_total") do
       expect(page).to have_content("Total: $0.00")
     end
