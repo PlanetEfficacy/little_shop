@@ -4,7 +4,11 @@ class User < ActiveRecord::Base
   validates :username, presence: true,
                        uniqueness: true
 
+  validates_confirmation_of :password,
+    message: 'Please re-enter your password'
+
   has_many :orders
+  has_one :user_profile
 
   enum role: %w(user admin)
 end

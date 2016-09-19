@@ -1,13 +1,13 @@
-class Admin::UsersController < ApplicationController
-  before_action :require_admin
-
-  def require_admin
-    if current_default_user? || !logged_in?
-      render :file => "public/404.html", status: :not_found
-    else
-
-    end
-  end
+class Admin::UsersController < Admin::BaseController
+  # before_action :require_admin
+  #
+  # def require_admin
+  #   if current_default_user? || !logged_in?
+  #     render :file => "public/404.html", status: :not_found
+  #   else
+  #
+  #   end
+  # end
 
   def edit
     @user = current_user

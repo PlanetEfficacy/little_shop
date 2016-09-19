@@ -40,11 +40,10 @@ class Cart
   end
 
   def has_more_than_one(item_id)
-    quantity(item_id) > 1
+    !!quantity(item_id) && quantity(item_id) > 1
   end
 
   def total_price
     contents.map{ |id, quantity| price(id) * quantity }.sum
   end
-
 end
