@@ -9,8 +9,8 @@ RSpec.describe OrderCompiler, type: :model do
     order_compiler = OrderCompiler.new(cart_contents, current_user)
 
     expect(Order.count).to eq(1)
-    expect(order_compiler.create.first.item_id).to eq(item.id)
-    expect(order_compiler.create.length).to eq(1)
+    expect(order_compiler.generate.first.item_id).to eq(item.id)
+    expect(order_compiler.generate.length).to eq(1)
     expect(order_compiler.order.user_id).to eq(current_user.id)
   end
 
@@ -22,7 +22,7 @@ RSpec.describe OrderCompiler, type: :model do
               item2.id.to_s => 1,
               item3.id.to_s => 1 }
 
-    item_orders = OrderCompiler.new(cart, Fabricate(:user)).create
+    item_orders = OrderCompiler.new(cart, Fabricate(:user)).generate
 
     expect(item_orders.length).to eq(3)
     item_orders.each do |item_order|
