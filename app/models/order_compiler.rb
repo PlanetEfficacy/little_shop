@@ -13,4 +13,12 @@ class OrderCompiler
                         order_id: order.id  )
     end
   end
+
+  def line_item_total
+    subtotals = cart.map do |item_id, quantity|
+      Item.find(item_id).price * quantity
+    end
+    order.update_attributes(total: subtotals.reduce(:+))
+  end
+
 end

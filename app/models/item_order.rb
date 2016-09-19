@@ -3,6 +3,6 @@ class ItemOrder < ActiveRecord::Base
   belongs_to :order
 
   def subtotal
-    item.dollars * quantity
+    item.price * quantity
   end
 end
