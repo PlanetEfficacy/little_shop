@@ -38,11 +38,11 @@ RSpec.feature "admin can see dashboard" do
     expect(page).to have_link("Completed", admin_orders_completed_path)
     # And I have links to transition between statuses
     # - I can click on "cancel" on individual orders which are "paid" or "ordered"
-    expect(page).to have_link("cancel")
+    expect(page).to have_link("cancel", admin_orders_cancelled_path)
     # - I can click on "mark as paid" on orders that are "ordered"
-    expect(page).to have_link("mark as paid")
+    expect(page).to have_link("mark as paid", admin_orders_paid_path)
     # - I can click on "mark as completed" on orders that are "paid"
-    expect(page).to have_link("mark as completed")
+    expect(page).to have_link("mark as completed", admin_orders_completed_path)
   end
 
   scenario "and click to see ordered items" do

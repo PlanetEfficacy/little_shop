@@ -8,15 +8,21 @@
 <!-- lets make this a table? -->
 <% @orders.each do |order| %>
   <%= link_to order.id, order_path(order)%>
-  <% if can_be_cancelled?(order) %>
-      <%= link_to "cancel", admin_orders_cancelled_path %>
-  <% end %>
-  <% if order.ordered? %>
-    <%= link_to "mark as paid", admin_orders_paid_path %>
-  <% end %>
-  <% if order.completed? %>
-    <%= link_to "mark as completed", admin_orders_completed_path %>
-  <% end %>
+  <p>
+    <% if can_be_cancelled?(order) %>
+      <%= link_to "cancel", admin_orders_cancelled_path(:status => 2) %>
+    <% end %>
+  </p>
+  <p>
+    <% if order.ordered? %>
+      <%= link_to "mark as paid", admin_orders_paid_path(:status => 1)%>
+    <% end %>
+  </p>
+  <p>
+    <% if order.completed? %>
+      <%= link_to "mark as completed", admin_orders_completed_path(:status => 3) %>
+    <% end %>
+  </p>
 <% end %>
 
 <h2>Breakdown By Status</h2>
