@@ -12,5 +12,4 @@ RSpec.describe ItemOrder, type: :model do
     expected_subtotal = item_order.item.dollars * item_order.quantity
     expect(item_order.subtotal).to eq(expected_subtotal)
   end
-
 end
