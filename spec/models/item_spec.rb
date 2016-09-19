@@ -7,6 +7,9 @@ RSpec.describe Item, type: :model do
     it { should have_many(:categories) }
     it { should have_many(:category_items) }
     it { should validate_presence_of(:title) }
+    it { should validate_presence_of(:description) }
+    it { should validate_uniqueness_of(:title) }
+
   end
 
   it 'can return its price in dollars' do
