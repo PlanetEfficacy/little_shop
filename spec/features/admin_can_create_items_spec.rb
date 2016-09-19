@@ -1,7 +1,5 @@
 require 'rails_helper'
 
-    # - The title and description cannot be empty.
-    # - The title must be unique for all items in the system.
     # - The price must be a valid decimal numeric value and greater than zero.
     # - The photo is optional. If not present, a stand-in photo is used. (PAPERCLIP)
 
@@ -61,6 +59,21 @@ RSpec.feature "admin can create items" do
     expect(current_path).to eq(new_item_path)
     expect(page).to have_content("Item could not be saved.")
   end
+
+  scenario "admin cannot create free item" do
+    fill_in "Title", with: "ItemTitle"
+    fill_in "Description", with: "ItemDescription"
+    fill_in "Price", with: 0
+    check "#{@category_1.name}"
+    click_button "Create New Item"
+    expect(current_path).to eq(new_item_path)
+    expect(page).to have_content("Item could not be saved.")
+  end
+
+
+
+
+
 
 
 
