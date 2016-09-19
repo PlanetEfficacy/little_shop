@@ -6,6 +6,7 @@ RSpec.describe Item, type: :model do
     it { should have_many(:item_orders) }
     it { should have_many(:categories) }
     it { should have_many(:category_items) }
+    it { should validate_presence_of(:title) }
   end
 
   it 'can return its price in dollars' do
@@ -24,4 +25,5 @@ RSpec.describe Item, type: :model do
     item.retire
     expect(item.retired?).to eq(true)
   end
+
 end

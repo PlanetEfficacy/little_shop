@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
       redirect_to item_path(@item)
     else
       flash[:danger] = "Item could not be saved."
-      render :new
+      redirect_to new_item_path
     end
   end
 

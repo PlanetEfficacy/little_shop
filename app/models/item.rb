@@ -3,6 +3,7 @@ class Item < ActiveRecord::Base
   has_many :categories, through: :category_items
   has_many :item_orders
   has_many :orders, through: :item_orders
+  validates_presence_of :title
 
   def dollars
     BigDecimal(price / 100.0, price.to_s.length + 2)
