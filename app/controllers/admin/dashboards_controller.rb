@@ -7,7 +7,7 @@ class Admin::DashboardsController < Admin::BaseController
   end
 
   def can_be_cancelled?(order)
-   order.status == "paid" || order.status == "ordered"
+   (order.status == "paid" || order.status == "ordered") && !order.cancelled?
   end
 
 end

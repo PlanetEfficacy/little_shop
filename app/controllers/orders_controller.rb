@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
     if @order.ordered? || @order.paid?
       status = params[:status]
       @order.update(status: status)
-      flash[:alert] = "Order no.#{@order.id} is now #{status}"
+      flash[:warning] = "Order no.#{@order.id} is now #{status}"
       if status == "cancelled"
         redirect_to admin_orders_cancelled_path(:status => 2)
       elsif status == "paid"
