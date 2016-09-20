@@ -25,4 +25,12 @@ class Item < ActiveRecord::Base
   def retire
     update_attribute(:retired, true)
   end
+
+  def product_image
+    if image_file_name
+      image.url(:medium)
+    else
+      image_url
+    end
+  end
 end

@@ -30,4 +30,14 @@ RSpec.describe Item, type: :model do
     expect(item.retired?).to eq(true)
   end
 
+  it 'has a product_image that returns the image url if there is no file' do
+    item = Fabricate(:item)
+    expect(item.product_image).to eq(item.image_url)
+  end
+
+  it 'has a product_image that returns the file path if there is a file' do
+    item = Fabricate(:item, image_file_name: Faker::File.file_name('path/to'))
+    expect(item.product_image).to eq(item.image.url(:medium))
+  end
+
 end
