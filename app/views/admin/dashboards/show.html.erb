@@ -1,38 +1,82 @@
-<h1>The All-Powerful Admin Dashboard</h1>
+<h1>The All-Powerful Admin Dashboard for <%= @user.username %> </h1>
 
-<%= @user.username %>
+<div class="container">
+  <br>
+  <%= link_to "Edit Admin Account", edit_admin_user_path, class: "btn btn-primary" %>
+  <br><br>
+</div>
 
-<%= link_to "Account", edit_admin_user_path, class: "btn btn-primary" %>
 
 <h2>All Orders</h2>
-<!-- lets make this a table? -->
-<% @orders.each do |order| %>
-  <%= link_to order.id, order_path(order)%>
-  <p>
-    <% if can_be_cancelled?(order) %>
-      <%= link_to "cancel", admin_orders_cancelled_path(:status => 2) %>
+
+<table class="table admin_orders">
+  <tr>
+    <th>
+      Order Number
+    </th>
+  </tr>
+  <% @orders.each do |order| %>
+    <tr>
+      <td>
+        <%= link_to order.id, order_path(order)%>
+        <% if can_be_cancelled?(order) %>
+      </td>
+      <td>
+        <%= link_to "cancel", admin_orders_cancelled_path(:status => 2) %>
+        <% end %>
+        <% if order.ordered? %>
+      </td>
+      <td>
+        <%= link_to "mark as paid", admin_orders_paid_path(:status => 1)%>
+        <% end %>
+        <% if order.completed? %>
+      </td>
+      <td>
+        <%= link_to "mark as completed", admin_orders_completed_path(:status => 3) %>
+        <% end %>
+      </td>
+    </tr>
     <% end %>
-  </p>
-  <p>
-    <% if order.ordered? %>
-      <%= link_to "mark as paid", admin_orders_paid_path(:status => 1)%>
-    <% end %>
-  </p>
-  <p>
-    <% if order.completed? %>
-      <%= link_to "mark as completed", admin_orders_completed_path(:status => 3) %>
-    <% end %>
-  </p>
-<% end %>
+</table>
 
 <h2>Breakdown By Status</h2>
-
-<%= link_to "Ordered", admin_orders_ordered_path(:status => 0)  %>: <%= @orders.ordered.count %></br>
-<%= link_to "Paid", admin_orders_paid_path(:status => 1)  %>: <%=
-@orders.paid.count %></br>
-<%= link_to "Cancelled", admin_orders_cancelled_path(:status => 2)  %>: <%= @orders.cancelled.count %></br>
-<%= link_to "Completed", admin_orders_completed_path(:status => 3)  %>: <%= @orders.completed.count %></br>
-
-
-<%= link_to "Create an Item", new_item_path %>
-<!-- iterate through all orders with a link to each order's show page -->
+<table class="table admin_orders">
+  <th>
+    Status
+  </th>
+  <th>
+    Amount
+  </th>
+  <tr>
+    <td>
+      <%= link_to "Ordered", admin_orders_ordered_path(:status => 0)  %>:
+    </td>
+    <td>
+      <%= @orders.ordered.count %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= link_to "Paid", admin_orders_paid_path(:status => 1)  %>:
+    </td>
+    <td>
+      <%= @orders.paid.count %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= link_to "Cancelled", admin_orders_cancelled_path(:status => 2)  %>:
+    </td>
+    <td>
+      <%= @orders.cancelled.count %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= link_to "Completed", admin_orders_completed_path(:status => 3)  %>:
+    </td>
+    <td>
+      <%= @orders.completed.count %>
+    </td>
+  </tr>
+</table>
