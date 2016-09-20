@@ -6,7 +6,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    OrderCompiler.new(session[:cart], current_user).generate
+    order_compiler = OrderCompiler.new(session[:cart], current_user)
+    order_compiler.generate
+    order_compiler.calculate_order_total
     flash[:success] = "Order was successfully placed."
     redirect_to orders_path
   end
