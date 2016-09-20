@@ -15,12 +15,12 @@ RSpec.describe OrderCompiler, type: :model do
   end
 
   it "can handle one order with multiple items and quantities" do
-    item1 = Fabricate(:item)
-    item2 = Fabricate(:item)
-    item3 = Fabricate(:item)
-    cart = {  item1.id.to_s => 1,
-              item2.id.to_s => 1,
-              item3.id.to_s => 1 }
+    item_1 = Fabricate(:item)
+    item_2 = Fabricate(:item)
+    item_3 = Fabricate(:item)
+    cart = {  item_1.id.to_s => 1,
+              item_2.id.to_s => 1,
+              item_3.id.to_s => 1 }
 
     item_orders = OrderCompiler.new(cart, Fabricate(:user)).generate
 

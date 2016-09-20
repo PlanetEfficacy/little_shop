@@ -10,6 +10,7 @@ RSpec.describe Item, type: :model do
     it { should validate_presence_of(:description) }
     it { should validate_uniqueness_of(:title) }
     it { should validate_numericality_of(:price).is_greater_than(0) }
+    # it { should validate_presence_of(:category) }
 
   end
 
@@ -28,6 +29,16 @@ RSpec.describe Item, type: :model do
     item = Fabricate(:item)
     item.retire
     expect(item.retired?).to eq(true)
+  end
+
+  it 'has a product_image that returns the image url if there is no file' do
+    item = Fabricate(:item)
+    expect(item.product_image).to eq(item.image_url)
+  end
+
+  it 'has a product_image that returns the file path if there is a file' do
+    item = Fabricate(:item, image_file_name: Faker::File.file_name('path/to'))
+    expect(item.product_image).to eq(item.image.url(:medium))
   end
 
 end

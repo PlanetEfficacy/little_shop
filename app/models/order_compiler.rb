@@ -4,6 +4,7 @@ class OrderCompiler
   def initialize(cart, current_user)
     @cart = cart
     @order = Order.create(user_id: current_user.id)
+    generate
   end
 
   def generate
