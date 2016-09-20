@@ -69,26 +69,24 @@ RSpec.feature "admin can create items" do
     expect(current_path).to eq(new_item_path)
     expect(page).to have_content("Item could not be saved.")
   end
+end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+RSpec.feature "non-admins cannott create items" do
   scenario "visitor cannot create item" do
+    visit new_item_path
+    expect(current_path).to eq(login_path)
   end
 
   scenario "logged-in user cannot create item" do
+    user = Fabricate(:user)
+    visit login_path
+    fill_in "Username", with: user.username
+    fill_in "Password", with: user.password
+    click_button "Login"
+
+    visit new_item_path
+    expect(page.status_code).to be(404)
+
   end
-
-
 end
