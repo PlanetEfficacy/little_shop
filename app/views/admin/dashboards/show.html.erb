@@ -22,17 +22,17 @@
         <% if can_be_cancelled?(order) %>
       </td>
       <td>
-        <%= link_to "cancel", admin_orders_cancelled_path(:status => 2) %>
+        <%= link_to "cancel", order_path(order, :status => "cancelled"), method: :patch %>
         <% end %>
         <% if order.ordered? %>
       </td>
       <td>
-        <%= link_to "mark as paid", admin_orders_paid_path(:status => 1)%>
+        <%= link_to "mark as paid", order_path(order, :status => "paid"), method: :patch %>
         <% end %>
-        <% if order.completed? %>
+        <% if !order.ordered? && order.paid? %>
       </td>
       <td>
-        <%= link_to "mark as completed", admin_orders_completed_path(:status => 3) %>
+        <%= link_to "mark as completed", order_path(order, :status => "completed"), method: :patch %>
         <% end %>
       </td>
     </tr>
@@ -40,7 +40,7 @@
 </table>
 
 <h2>Breakdown By Status</h2>
-<table class="table admin_orders">
+<table class="table admin_orders_status">
   <th>
     Status
   </th>
