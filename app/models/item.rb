@@ -6,6 +6,7 @@ class Item < ActiveRecord::Base
   validates_presence_of :title, :description
   validates_uniqueness_of :title
   validates_numericality_of :price, greater_than: 0
+  # validates :categories, length: { minimum: 1 }
 
   has_attached_file :image, styles: {
    thumb: '100x100>',

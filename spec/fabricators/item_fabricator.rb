@@ -4,5 +4,6 @@ Fabricator(:item) do
   image_url { Faker::Placeholdit.image("50x50", 'jpeg', 'ffffff', '000') }
   price { Faker::Commerce.price }
 
-  # orders(count: 2)
+  # category
+  # category_item
 end

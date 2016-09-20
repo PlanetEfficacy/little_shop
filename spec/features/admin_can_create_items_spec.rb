@@ -70,6 +70,15 @@ RSpec.feature "admin can create items" do
     expect(page).to have_content("Item could not be saved.")
   end
 
+  scenario "admin cannot create item without category" do
+    fill_in "Title", with: "ItemTitle"
+    fill_in "Description", with: "ItemDescription"
+    fill_in "Price", with: 100
+    click_button "Create New Item"
+    # expect(current_path).to eq(new_item_path)
+    # expect(page).to have_content("Item could not be saved.")
+  end
+
   scenario "admin can create item with photo attachment" do
     fill_in "Title", with: "ItemTitle"
     fill_in "Description", with: "ItemDescription"
