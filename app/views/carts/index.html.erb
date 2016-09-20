@@ -22,7 +22,11 @@
 </div>
 
 <% if logged_in? %>
-  <%= button_to "Checkout", orders_path, class: 'btn btn-primary' %>
-<% else %>
+  <% if @cart.contents.empty? %>
+    <h2 class="discrepancy"> I've happened upon you while I was taking my typewriter to the local coffee shop for a pour over and noticed that your cart is ironically empty. Perhaps you would like to <%= link_to "correct this discrepancy", root_path %>...?</h2>
+  <% elsif !@cart.contents.empty? %>
+    <%= button_to "Checkout", orders_path, class: 'btn btn-primary' %>
+  <% end %>
+  <% else %>
   <%= link_to "Login or Create Account to Checkout", login_path %>
 <% end %>
