@@ -7,6 +7,13 @@ class Item < ActiveRecord::Base
   validates_uniqueness_of :title
   validates_numericality_of :price, greater_than: 0
 
+  has_attached_file :image, styles: {
+   thumb: '100x100>',
+   square: '200x200#',
+   medium: '300x300>'
+  }
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+
   def dollars
     price
   end

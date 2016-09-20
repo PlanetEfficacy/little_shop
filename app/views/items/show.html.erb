@@ -1,7 +1,7 @@
 <%= @item.title %>
 <%= @item.description %>
 <%= number_to_currency(@item.dollars) %>
-<%= image_tag @item.image_url %>
+<%= image_tag @item.image.url(:medium), class: "product-image" %>
 
 <% if @item.retired? %>
   <div class="label label-warning">Item Retired</div>

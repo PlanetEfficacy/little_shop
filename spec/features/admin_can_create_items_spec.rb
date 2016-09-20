@@ -69,8 +69,22 @@ RSpec.feature "admin can create items" do
     expect(current_path).to eq(new_item_path)
     expect(page).to have_content("Item could not be saved.")
   end
+
+  scenario "admin can create item with photo attachment" do
+    fill_in "Title", with: "ItemTitle"
+    fill_in "Description", with: "ItemDescription"
+    fill_in "Price", with: 100
+    check "#{@category_1.name}"
+    attach_file("Image", Rails.root + "spec/fixtures/dummy.png")
+
+    click_button "Create New Item"
+    expect(current_path).to eq(item_path(Item.last))
+
+    expect(page).to have_css(".product-image")
+  end
 end
 
+# TEST ITEM FOR 0 CATEGORIES - should not be allowed imo
 
 RSpec.feature "non-admins cannott create items" do
   scenario "visitor cannot create item" do

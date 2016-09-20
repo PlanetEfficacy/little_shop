@@ -25,6 +25,8 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     # require "pry"; binding.pry
     # params['item']['category_ids'].each do |id|
+
+    # This needs to be refactored
     item_params['category_ids'].reject{ |id| id==''}.each do |id|
       @item.categories << Category.find(id)
     end
@@ -40,6 +42,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :description, :price, :image_url, :category_ids => [] )
+    params.require(:item).permit(:title, :description, :price, :image, :category_ids => [] )
   end
 end
