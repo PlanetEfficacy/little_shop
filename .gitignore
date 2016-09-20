@@ -18,6 +18,4 @@
 /config/application.yml
 
 #ignore fabricated images
-public/system/items/images/000/000/049/medium/dummy.png
-public/system/items/images/000/000/049/square/dummy.png
-public/system/items/images/000/000/049/thumb/dummy.png
+public/system
