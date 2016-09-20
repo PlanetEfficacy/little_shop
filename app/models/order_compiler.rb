@@ -15,9 +15,11 @@ class OrderCompiler
     end
   end
 
-  def total
-    order.item_orders.map do |item_order|
-      item_order.subtotal
-    end.sum
+  def calculate_order_total
+    subtotals = cart.map do |item_id, quantity|
+      Item.find(item_id).price * quantity
+    end
+    order.update(total: subtotals.reduce(:+))
   end
+
 end

@@ -30,16 +30,17 @@ RSpec.describe OrderCompiler, type: :model do
     end
   end
 
-  it "assigns an order total" do
-    item_1 = Fabricate(:item)
-    item_2 = Fabricate(:item)
-    item_3 = Fabricate(:item)
-    cart = {  item_1.id.to_s => 1,
-              item_2.id.to_s => 1,
-              item_3.id.to_s => 1 }
+  it "can make line item totals" do
+    item1 = Fabricate(:item)
+    item2 = Fabricate(:item)
+    item3 = Fabricate(:item)
+    cart = {  item1.id.to_s => 1,
+              item2.id.to_s => 1,
+              item3.id.to_s => 1 }
 
     order_compiler = OrderCompiler.new(cart, Fabricate(:user))
-
-    expect(order_compiler.total).to eq(item_1.price + item_1.price + item_3.price)
+    order_compiler.generate
+    order_compiler.calculate_order_total
+    expect(order_compiler.order.total).to eq(item1.price + item2.price + item3.price)
   end
 end

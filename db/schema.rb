@@ -51,11 +51,11 @@ ActiveRecord::Schema.define(version: 20160920170318) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "status",     default: 0
-    t.integer  "total"
+    t.integer  "status",                              default: 0
+    t.decimal  "total",      precision: 15, scale: 2
     t.integer  "user_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
