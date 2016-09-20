@@ -14,8 +14,7 @@ require 'spec_helper'
 RSpec.feature "visitor can remove item from cart" do
   scenario "visitor doesn't see the item in the cart after removing" do
 
-    item = Item.create(title: "Paperclip", description: "This is an artisanal paperclip!", price: 5000, image_url: "http://tectonicablog.com/wp-content/uploads/2013/01/023-455x606.jpg")
-
+    item = Fabricate(:item)
     visit items_path
     click_on "Add to Cart"
     # as a visitor, when I visit "/cart"
@@ -31,14 +30,14 @@ RSpec.feature "visitor can remove item from cart" do
 
     # And I should see a message styled in green
     # And the message should say "Successfully removed SOME_ITEM from your cart."
-    expect(page).to have_content("Successfully removed Paperclip from your cart.")
+    expect(page).to have_content("Successfully removed #{item.title} from your cart.")
     # And the title "SOME_ITEM" should be a link to that item in case the user wants to add it back
     expect(page).to have_link("#{item.title}", :href => "/items/#{item.id}")
     # And I should not see the item listed in cart
     within(".invoice_item") do
-      expect(page).not_to have_content("Paperclip")
-      expect(page).not_to have_content("This is an artisanal paperclip")
-      expect(page).not_to have_content("$50.00")
+      expect(page).not_to have_content(item.title)
+      expect(page).not_to have_content(item.description)
+      expect(page).not_to have_content(item.price)
     end
 
     within(".invoice_total") do
