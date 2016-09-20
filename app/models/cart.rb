@@ -31,7 +31,7 @@ class Cart
   end
 
   def price(item_id)
-    Item.find(item_id).dollars
+    Item.find(item_id).price
   end
 
   def subtotal(item_id)

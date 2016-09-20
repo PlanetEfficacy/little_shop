@@ -1,0 +1,32 @@
+<div class="col-md-6 col-md-offset-3 text-center">
+  <h1>Create Item</h1>
+  <%= form_for(@item) do |f| %>
+    <div class="form-group text-left">
+      <%= f.label :title %>
+      <%= f.text_field :title, :class => "form-control" %>
+    </div>
+
+    <div class="form-group text-left">
+      <%= f.label :description %>
+      <%= f.text_area :description, :class => "form-control" %>
+    </div>
+
+    <div class="form-group text-left">
+      <%= f.label :price %>
+      <%= f.number_field :price, :class => "form-control", step: 'any' %>
+    </div>
+
+    <%# @categories.each do |category| %>
+      <%#= check_box_tag 'category_ids[]', category.id %>
+      <%#= h category.name %>
+    <%# end %>
+
+    <%= f.collection_check_boxes :category_ids, @categories, :id, :name do |cb| %>
+      <% cb.label {cb.check_box + cb.text} %>
+    <% end %>
+
+    <div class=btn-group>
+      <%= f.submit "Create New Item", :class => "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
