@@ -29,4 +29,18 @@ RSpec.describe OrderCompiler, type: :model do
       expect(item_order).to be_instance_of(ItemOrder)
     end
   end
+
+  it "can make line item totals" do
+    item1 = Fabricate(:item)
+    item2 = Fabricate(:item)
+    item3 = Fabricate(:item)
+    cart = {  item1.id.to_s => 1,
+              item2.id.to_s => 1,
+              item3.id.to_s => 1 }
+
+    order_compiler = OrderCompiler.new(cart, Fabricate(:user))
+    order_compiler.generate
+    order_compiler.calculate_order_total
+    expect(order_compiler.order.total).to eq(item1.price + item2.price + item3.price)
+  end
 end
