@@ -7,11 +7,17 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order_compiler = OrderCompiler.new(session[:cart], current_user)
-    order_compiler.generate
-    order_compiler.calculate_order_total
-    flash[:success] = "Order was successfully placed."
-    redirect_to orders_path
+    if !session[:cart].empty?
+      order_compiler = OrderCompiler.new(session[:cart], current_user)
+      order_compiler.generate
+      order_compiler.calculate_order_total
+      flash[:success] = "Order was successfully placed."
+      session[:cart].clear
+      redirect_to orders_path
+    elsif session[:cart].empty?
+      flash[:danger] = "This order has already been placed. Your cart is empty."
+      redirect_to orders_path
+    end
   end
 
   def show
