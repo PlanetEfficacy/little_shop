@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  namespace :item do
+    resources :reviews, only: [:create]
+  end
+
   resources :items, only: [:index, :show, :new, :create]
   put '/cart', to: 'carts#edit'
   post '/cart', to: 'carts#create'

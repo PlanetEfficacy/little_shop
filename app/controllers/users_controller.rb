@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.user_profile = UserProfile.create(user_profile_params)
-      session[:user_id] = @user.id
+      set_session(@user)
       redirect_to dashboard_path
     else
       flash[:danger] = "Please re-enter your password"

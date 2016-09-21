@@ -1,20 +1,26 @@
 <h2 class="item_header">All Items</h2>
 
-<% @items.in_groups_of(3, false).each do |group| %>
+<div class="container">
+  <% @items.in_groups_of(3, false).each do |group| %>
   <div class="row">
     <% group.each do |item| %>
       <div class="col-md-4">
         <div class="item">
           <h5><%= item.title.capitalize %></h5>
-          <p><%= link_to(image_tag(item.image_url), item_path(item), class: "thumbnail") %></p>
+          <p><%= link_to(image_tag(item.image_url), item_path(item), class: "img-thumbnail img-fluid") %></p>
           <p><%= number_to_currency(item.dollars) %></p>
           <p><%= button_to "Add to Cart", cart_path(item_id: item.id), class: 'btn btn-primary btn-sm'  %></p>
         </div>
       </div>
+    </div>
     <% end %>
   </div>
-<% end %>
+  <% end %>
+</div>
 
 
-
-<%= link_to "View Cart", cart_path%>
+<div class="container">
+  <div class="link-view-cart">
+    <%= link_to "View Cart", cart_path %>
+  </div>
+</div>
