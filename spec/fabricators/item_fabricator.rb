@@ -5,6 +5,4 @@ Fabricator(:item) do
   price { Faker::Commerce.price }
 
   categories(count: 2)
-  # category
-  # category_items
 end

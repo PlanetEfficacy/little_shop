@@ -21,5 +21,4 @@ class OrderCompiler
     end
     order.update(total: subtotals.reduce(:+))
   end
-
 end

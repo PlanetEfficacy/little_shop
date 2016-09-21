@@ -1,6 +1,5 @@
 class Item::ReviewsController < ApplicationController
   def create
-    # require "pry"; binding.pry
     @item = Item.find(review_params[:item_id])
     @review = @item.reviews.new(body: review_params[:body],
                                 stars: review_params[:stars].to_i,
@@ -10,7 +9,6 @@ class Item::ReviewsController < ApplicationController
     else
       flash[:notice] = "Your review sucks, we have discarded it"
     end
-    # require "pry"; binding.pry
     redirect_to item_path(@item)
   end
 
