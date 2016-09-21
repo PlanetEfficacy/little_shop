@@ -5,7 +5,7 @@ RSpec.feature 'admin can change status of order' do
     admin = Fabricate(:user, role: 1)
     @order1 = Fabricate(:order, status: 0)
     @order2 = Fabricate(:order, status: 1)
-    login_as_admin(admin)
+    login_as(admin)
   end
 
   scenario 'clicking cancel changes status to cancelled' do

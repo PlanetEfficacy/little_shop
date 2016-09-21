@@ -7,7 +7,7 @@ RSpec.feature "admin cannot modify users" do
     user = Fabricate(:user)
     expect(admin.admin?).to eq(true)
 
-    login_as_admin(admin)
+    login_as(admin)
     expect(current_path).to eq(admin_dashboard_path)
 
     # I can modify my account data
