@@ -72,7 +72,7 @@ RSpec.feature "admin can create items" do
     fill_in_description
     fill_in_price
     click_button "Create New Item"
-    
+
     expect(current_path).to eq(new_item_path)
     expect_not_saved
   end
@@ -101,6 +101,6 @@ RSpec.feature "non-admins cannott create items" do
     user = Fabricate(:user)
     login_as(user)
     visit new_item_path
-    expect(page.status_code).to be(404)
+    expect_404_doesnt_exist
   end
 end
