@@ -3,9 +3,21 @@ class Item < ActiveRecord::Base
   has_many :categories, through: :category_items
   has_many :item_orders
   has_many :orders, through: :item_orders
+  validates_presence_of :title, :description
+  validates_uniqueness_of :title
+  validates_numericality_of :price, greater_than: 0
+  validates_presence_of :categories
+  has_many :reviews
+
+  has_attached_file :image, styles: {
+   thumb: '100x100>',
+   square: '200x200#',
+   medium: '300x300>'
+  }
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   def dollars
-    BigDecimal(price / 100.0, price.to_s.length + 2)
+    price
   end
 
   def retired?
@@ -14,5 +26,22 @@ class Item < ActiveRecord::Base
 
   def retire
     update_attribute(:retired, true)
+  end
+
+  def product_image
+    if image_file_name
+      image.url(:medium)
+    else
+      image_url
+    end
+  end
+
+  def average_rating
+    # binding.pry
+    if reviews.count > 0
+      reviews.average(:stars).round(1)
+    else
+      "Not enough reviews."
+    end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160918044319) do
+ActiveRecord::Schema.define(version: 20160921003935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,21 +40,37 @@ ActiveRecord::Schema.define(version: 20160918044319) do
     t.string   "title"
     t.string   "description"
     t.string   "image_url"
-    t.integer  "price"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.boolean  "retired",     default: false
+    t.decimal  "price",              precision: 15, scale: 2
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
+    t.boolean  "retired",                                     default: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "status",     default: 0
-    t.integer  "total"
+    t.integer  "status",                              default: 0
+    t.decimal  "total",      precision: 15, scale: 2
     t.integer  "user_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
+  create_table "reviews", force: :cascade do |t|
+    t.string   "body"
+    t.integer  "stars"
+    t.integer  "user_id"
+    t.integer  "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "reviews", ["item_id"], name: "index_reviews_on_item_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "user_profiles", force: :cascade do |t|
     t.integer "user_id"
@@ -79,5 +95,7 @@ ActiveRecord::Schema.define(version: 20160918044319) do
   add_foreign_key "item_orders", "items"
   add_foreign_key "item_orders", "orders"
   add_foreign_key "orders", "users"
+  add_foreign_key "reviews", "items"
+  add_foreign_key "reviews", "users"
   add_foreign_key "user_profiles", "users"
 end

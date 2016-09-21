@@ -11,8 +11,7 @@ class Cart
   end
 
   def remove_item(item_id)
-    contents[item_id.to_s] -= 1
-    contents.delete_if {|id, quantity| quantity == 0 }
+    contents.delete(item_id.to_s)
   end
 
   def decrease_quantity(item_id)
@@ -32,7 +31,7 @@ class Cart
   end
 
   def price(item_id)
-    Item.find(item_id).dollars
+    Item.find(item_id).price
   end
 
   def subtotal(item_id)

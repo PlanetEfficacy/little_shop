@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user,
                 :logged_in?,
                 :logged_in_with_cart_items?,
-                :cart_empty?
+                :cart_empty?,
+                :current_admin?
 
   def set_cart
     @cart = Cart.new(session[:cart])
@@ -37,4 +38,15 @@ class ApplicationController < ActionController::Base
   def require_user
     redirect_to login_path if !logged_in?
   end
+
+  def require_admin
+    if current_default_user? || !logged_in?
+      render :file => "public/404.html", status: :not_found
+    end
+  end
+
+  def set_session(user)
+    session[:user_id] = user.id
+  end
+
 end

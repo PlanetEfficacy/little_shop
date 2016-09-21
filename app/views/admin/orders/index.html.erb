@@ -1,5 +1,10 @@
 <table class="table">
-  <% @orders.each do |order| %>
-    <tr><td><%= order.id %><td></tr>
+  <% if @orders.count != 0  %>
+    <h1><%= @orders.first.status %></h1>
+    <% @orders.each do |order| %>
+      <tr><td><%=link_to order.id, order_path(order) %><td></tr>
+    <% end %>
+  <% else %>
+    <h1>Bummer...there are no orders with this status. Time for a craft cocktail!</h1>
   <% end %>
 </table>

@@ -32,7 +32,7 @@ RSpec.describe Cart, type: :model do
     cart.add_item(item_2.id)
 
     expect(cart.items.length).to eq(2)
-    expect(cart.total_price).to eq(BigDecimal(item_1.price + item_2.price) / 100)
+    expect(cart.total_price).to eq(item_1.price + item_2.price)
     expect(cart.total_price).to be_an_instance_of(BigDecimal)
   end
 

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :show]
 
-  resources :orders, only: [:index, :show, :create]
+  resources :orders, only: [:index, :show, :create, :update]
 
   resource :dashboard, only: [:show]
 
@@ -21,7 +21,11 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  resources :items, only: [:index, :show]
+  namespace :item do
+    resources :reviews, only: [:create]
+  end
+
+  resources :items, only: [:index, :show, :new, :create]
   put '/cart', to: 'carts#edit'
   post '/cart', to: 'carts#create'
   get '/cart', to: 'carts#index'
