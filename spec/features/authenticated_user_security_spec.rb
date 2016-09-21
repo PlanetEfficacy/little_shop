@@ -10,8 +10,8 @@ RSpec.feature "authenticated user" do
     visit orders_path
 
     within ".table" do
-      expect(page).to have_link("View", :href => order_path(order_1))
-      expect(page).to_not have_link("View", :href => order_path(order_2))
+      expect(page).to have_link("View", href: order_path(order_1))
+      expect(page).to_not have_link("View", href: order_path(order_2))
     end
   end
 

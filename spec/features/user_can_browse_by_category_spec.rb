@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.feature "visitor can browse by category" do
   scenario "visitor can see existing items in a single category" do
     category = Category.create(name: "Fancy")
-    item_1 = Fabricate(:item, categories: [category])
-    item_2 = Fabricate(:item, categories: [category])
+    Fabricate(:item, categories: [category])
+    Fabricate(:item, categories: [category])
     visit category_path(category)
     category_path = category.name.gsub(' ', '-').downcase
 

@@ -18,10 +18,10 @@ RSpec.feature "admin can see dashboard" do
     expect(page).to have_content("Cancelled: 1")
     expect(page).to have_content("Completed: 1")
 
-    expect(page).to have_link("#{order1.id}", :href => "/orders/#{order1.id}")
-    expect(page).to have_link("#{order2.id}", :href => "/orders/#{order2.id}")
-    expect(page).to have_link("#{order3.id}", :href => "/orders/#{order3.id}")
-    expect(page).to have_link("#{order4.id}", :href => "/orders/#{order4.id}")
+    expect(page).to have_link("#{order1.id}", href: "/orders/#{order1.id}")
+    expect(page).to have_link("#{order2.id}", href: "/orders/#{order2.id}")
+    expect(page).to have_link("#{order3.id}", href: "/orders/#{order3.id}")
+    expect(page).to have_link("#{order4.id}", href: "/orders/#{order4.id}")
 
     expect(page).to have_link("Ordered")
     expect(page).to have_link("Paid")

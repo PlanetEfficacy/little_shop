@@ -6,5 +6,4 @@ RSpec.feature "visitor visits homepage" do
     visit items_path
     expect(page).to have_css(".item", count: 3)
   end
-
 end

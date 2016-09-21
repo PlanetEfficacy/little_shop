@@ -20,7 +20,7 @@ RSpec.feature "admin cannot modify users" do
       fill_in "Confirm new password", with: 'super_secret'
       click_button "Update"
     end
-    
+
     expect(current_path).to eq(admin_dashboard_path)
     expect(page).to have_content('admin!')
 

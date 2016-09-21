@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.feature "item reviews" do
-
   def user_adds_item_review
     @item = Fabricate(:item)
     @user = Fabricate(:user)
@@ -11,7 +10,6 @@ RSpec.feature "item reviews" do
     fill_in_review_body
     select_stars(4)
     click_button "Submit Review"
-
     expect(current_path).to eq(item_path(@item))
   end
 
@@ -28,7 +26,6 @@ RSpec.feature "item reviews" do
 
     expect(page).to have_content("Average Rating: 4.0")
   end
-
 
   scenario "visitor can see all reviews of an item" do
     user_adds_item_review
@@ -59,7 +56,7 @@ RSpec.feature "item reviews" do
   scenario "visitor cannot delete a review" do
     user_adds_item_review
     click_link("Logout")
-    
+
     visit item_path(@item)
     expect(page).not_to have_button("Delete Review")
   end

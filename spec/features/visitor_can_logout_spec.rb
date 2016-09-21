@@ -28,5 +28,4 @@ RSpec.feature "visitor can logout" do
     expect(current_path).to eq(items_path)
     expect_to_see_login
   end
-
 end

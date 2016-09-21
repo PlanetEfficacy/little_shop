@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.feature "visitor can remove item from cart" do
   scenario "visitor doesn't see the item in the cart after removing" do
-
     item = Fabricate(:item)
     visit items_path
     click_on "Add to Cart"

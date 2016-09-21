@@ -21,7 +21,7 @@ RSpec.feature "guest user must create account to Checkout" do
     fill_in "Last name", with: "Smith"
     fill_in "Street address", with: "123 Main St."
     fill_in "City", with: "Anytown"
-    select "Ohio", :from => "state"
+    select "Ohio", from: "state"
     fill_in "Zipcode", with: "10001"
 
     click_button "Create Account"
