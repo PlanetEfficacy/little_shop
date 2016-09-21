@@ -9,6 +9,7 @@ RSpec.describe User, type: :model do
     it { should have_one(:user_profile) }
     it { should validate_confirmation_of(:password).
       with_message('Please re-enter your password') }
+    it { should have_many(:reviews) }
   end
 
   it "is a standard user by default" do

@@ -11,6 +11,7 @@ RSpec.describe Item, type: :model do
     it { should validate_uniqueness_of(:title) }
     it { should validate_numericality_of(:price).is_greater_than(0) }
     it { should validate_presence_of(:categories) }
+    it { should have_many(:reviews) }
 
   end
 
@@ -39,6 +40,14 @@ RSpec.describe Item, type: :model do
   it 'has a product_image that returns the file path if there is a file' do
     item = Fabricate(:item, image_file_name: Faker::File.file_name('path/to'))
     expect(item.product_image).to eq(item.image.url(:medium))
+  end
+
+  it "has an average rating" do
+    item = Fabricate(:item)
+    item.reviews.create(stars: 4)
+    item.reviews.create(stars: 5)
+    expect(item.reviews.count).to eq(2)
+    expect(item.average_rating).to eq(4.5)
   end
 
 end

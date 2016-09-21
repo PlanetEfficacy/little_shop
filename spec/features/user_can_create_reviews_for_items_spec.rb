@@ -2,15 +2,39 @@ require 'rails_helper'
 
 RSpec.feature "item reviews" do
   scenario "logged in user adds a review to an item" do
+    user = Fabricate(:user)
     # As a logged in user
+    visit login_path
+    fill_in "Username", with: user.username
+    fill_in "Password", with: user.password
+    click_button "Login"
     # When I visit an item show page
+    item = Fabricate(:item)
+    visit item_path(item)
     # Then I should expect to see a form to fill out a review
+    expect(page).to have_css('.new_review > form')
     # And I fill out the text area with my review
+    fill_in "Body", with: "This is my review."
     # And I give it 4 stars
+    # save_and_open_page
+    select 4, from: "stars"
     # And I click "Submit Review"
+    click_button "Submit Review"
     # Then I should expect to still be on the item show page
+    expect(current_path).to eq(item_path(item))
     # And I should see my review on the page
-    # And I should expect to see the average stars for the item
+    within ".review" do
+      expect(page).to have_content("This is my review.")
+    # And I should expect to see my username on the page
+      expect(page).to have_content(user.username)
+    # And I should expect to see when it was created
+      expect(page).to have_content(user.reviews.last.created_at)
+    # And I should expect to see the number of stars I gave it
+      expect(page).to have_css(".glyphicon-star", count: 4)
+      expect(page).to have_css(".glyphicon-star-empty", count: 1)
+    end
+    # I should also see the average star rating for the item
+    expect(page).to have_content("Average Rating: 4.0")
   end
 
 

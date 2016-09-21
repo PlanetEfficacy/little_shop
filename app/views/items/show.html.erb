@@ -1,5 +1,6 @@
 <%= @item.title %>
 <%= @item.description %>
+<h3>Average Rating: <%= @item.average_rating %></h3>
 <%= number_to_currency(@item.dollars) %>
 <%= image_tag @item.product_image, class: "product-image" %>
 <%#image_tag @item.image.url(:medium), class: "product-image" %>
@@ -8,4 +9,37 @@
   <div class="label label-warning">Item Retired</div>
 <% else %>
   <%= button_to "Add to Cart", cart_path(item_id: @item.id) %>
+<% end %>
+
+<div class="reviews">
+  <% @item.reviews.each do |review| %>
+    <div class="review">
+      <p> <%= review.body %> </p>
+      <p> <%= review.user.username %> </p>
+      <p> <%= review.created_at %> </p>
+      <div class="stars">
+        <% review.stars.times do %>
+          <span class="glyphicon glyphicon-star" aria-hidden="true">*</span>
+        <% end %>
+        <% (5 - review.stars).times do %>
+          <span class="glyphicon glyphicon-star-empty"></span>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<% if logged_in? %>
+  <div class="new_review">
+    <%= form_for [@item, @review] do |f| %>
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+
+      <%= f.label :stars %>
+      <%= select_tag :stars, options_for_select([1, 2, 3, 4, 5]) %>
+
+      <%= f.hidden_field :item_id, value: @item.id %>
+      <%= f.submit "Submit Review" %>
+    <% end %>
+  </div>
 <% end %>

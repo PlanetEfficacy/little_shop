@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
     message: 'Please re-enter your password'
 
   has_many :orders
+  has_many :reviews
   has_one :user_profile
 
   enum role: %w(user admin)
