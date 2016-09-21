@@ -4,8 +4,31 @@ html {
 }
 
 body{
-  font-family: "Sans-Serif";
+  font-family: "Quattrocento";
   background: white;
+}
+
+.navbar  {
+  padding: 50px;
+}
+
+.navbar-brand {
+  font-family: "Quattrocento";
+  color: #355550;
+}
+
+.nav-link{
+  font-family: "Quattrocento";
+  color: #355550;
+}
+
+.nav-tabs {
+  padding: 10px;
+
+}
+
+.dashboard-link-to-cart {
+  padding: 15px;
 }
 
 .item {
@@ -14,7 +37,16 @@ body{
 }
 
 .item h5 {
-  font-family: 'Quattrocento'
+  font-family: 'Quattrocento';
+}
+
+.link-view-cart {
+  text-align: center;
+  padding: 20px;
+}
+
+h2.discrepancy {
+  font-family: 'Quattrocento';
 }
 
 h2.item_header {
@@ -25,6 +57,8 @@ h2.item_header {
 .jumbotron {
 background-image: url("https://hd.unsplash.com/photo-1432821596592-e2c18b78144f");
 background-size: cover;
+height: 300px;
+
 }
 
 .jumbotron h1 {
