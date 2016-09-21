@@ -7,11 +7,7 @@ RSpec.feature "admin can create items" do
     admin = Fabricate(:user, role: 1)
     @category_1 = Fabricate(:category)
 
-    visit login_path
-    fill_in "Username", with: admin.username
-    fill_in "Password", with: admin.password
-    click_button "Login"
-
+    login_as_admin(admin)
     click_link "Create an Item"
   end
 

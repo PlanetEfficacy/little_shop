@@ -7,11 +7,7 @@ require 'rails_helper'
 RSpec.feature "admin views order" do
   scenario "admin sees order and purchaser information" do
     admin = Fabricate(:user, role: 1)
-    visit login_path
-    fill_in "Username", with: admin.username
-    fill_in "Password", with: admin.password
-    click_button "Login"
-
+    login_as_admin(admin)
     order = Fabricate(:order)
     expect(order.user).to_not eq(admin)
     # As an authenticated Admin, when I visit an individual order page
