@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe UserProfile, type: :model do
-
   context "validations" do
     it { should belong_to(:user) }
   end
@@ -17,5 +16,4 @@ RSpec.describe UserProfile, type: :model do
     line_2 = "#{profile.city}, #{profile.state} #{profile.zipcode}"
     expect(profile.address).to eq("#{line_1}\n#{line_2}")
   end
-
 end

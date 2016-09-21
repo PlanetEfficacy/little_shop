@@ -1,5 +1,4 @@
 RSpec.describe OrderCompiler, type: :model do
-
   it "can populate an item order" do
     current_user = Fabricate(:user)
     item = Fabricate(:item)
