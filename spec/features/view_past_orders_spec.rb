@@ -12,10 +12,7 @@ RSpec.feature "authenticated user can view all past orders" do
     order = Fabricate(:order)
     user = order.user
 
-    visit login_path
-    fill_in "Username", with: user.username
-    fill_in "Password", with: user.password
-    click_button "Login"
+    login_as(user)
 
     visit orders_path
     expect(page).to have_css(".orders")

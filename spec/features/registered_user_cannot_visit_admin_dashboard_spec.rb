@@ -4,10 +4,7 @@ RSpec.feature "admin user dashboard" do
   scenario "a registered user gets a 404 when visiting admin/dashboard" do
       # As a registered user
       user = Fabricate(:user)
-      visit login_path
-      fill_in "Username", with: user.username
-      fill_in "Password", with: user.password
-      click_button "Login"
+      login_as(user)
       # When I visit "/admin/dashboard"
       visit admin_dashboard_path
       # I get a 404

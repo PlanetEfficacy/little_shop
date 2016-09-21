@@ -7,10 +7,7 @@ RSpec.feature "authenticated user" do
     order_2 = Fabricate(:order)
     user = order_1.user
 
-    visit login_path
-    fill_in "Username", with: user.username
-    fill_in "Password", with: user.password
-    click_button "Login"
+    login_as(user)
     # I cannot view another user's private data (current or past orders, etc)
     visit orders_path
 
@@ -23,11 +20,7 @@ RSpec.feature "authenticated user" do
   scenario "cannot view admin screens and functionality" do
     # As an authenticated user
     user = Fabricate(:user)
-
-    visit login_path
-    fill_in "Username", with: user.username
-    fill_in "Password", with: user.password
-    click_button "Login"
+    login_as(user)
     # I cannot view the adminsitrator screens or use admin functionality
     visit admin_dashboard_path
 
@@ -37,9 +30,7 @@ RSpec.feature "authenticated user" do
   scenario "cannot make themselves an admin" do
     # As an authenticated user
     user = Fabricate(:user)
-    visit login_path
-    fill_in "Username", with: user.username
-    fill_in "Password", with: user.password
-    click_button "Login"
+    login_as(user)
+    expect(page).not_to have_content("Become Admin")
   end
 end

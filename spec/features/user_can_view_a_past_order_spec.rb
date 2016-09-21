@@ -26,10 +26,7 @@ RSpec.feature "user can view a past order" do
     item = order.items.first
     user = order.user
 
-    visit login_path
-    fill_in "Username", with: user.username
-    fill_in "Password", with: user.password
-    click_button "Login"
+    login_as(user)
     #   When I visit "/orders"
     visit orders_path
       #   Then I should see my past order
