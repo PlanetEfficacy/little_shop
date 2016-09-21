@@ -12,7 +12,7 @@ RSpec.feature "visitor can add item to cart and then see it in the cart" do
 
     expect(current_path).to eq('/cart')
     within(".invoice_item") do
-      expect(page).to have_css('.thumbnail')
+      expect(page).to have_css('img')
       expect(page).to have_content(item.title)
       expect(page).to have_content(item.description)
       expect(page).to have_content(item.price)

@@ -28,6 +28,8 @@ RSpec.feature "guest user must create account to Checkout" do
 
     visit cart_path
     expect(page).to have_css(".invoice_item")
-    expect(page).to have_css(".thumbnail", count: 1)
+    within ".invoice_item" do
+      expect(page).to have_css("img", count: 1)
+    end
   end
 end

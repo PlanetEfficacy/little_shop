@@ -9,32 +9,47 @@ RSpec.feature "visitor can change quantity of item in the cart" do
 
     within(".invoice_item") do
       expect(page).to have_content(item.title)
-      expect(page).to have_content("Quantity: 1")
+      expect(page).to have_content("1")
     end
 
-    click_on "+"
+
+
+    # And when I increase the quantity
+    click_button "increase"
+    # Then my current page should be '/cart'
 
     expect(current_path).to eq("/cart")
     within(".invoice_item") do
       expect(page).to have_content(item.title)
-      expect(page).to have_content("Quantity: 2")
-      expect(page).to have_content("Subtotal: $#{2 * item.price}")
+
+      expect(page).to have_content("2")
+    end
+    # And the subtotal for that item should increase
+    within(".invoice_item") do
+      expect(page).to have_content("$#{2 * item.price}")
+
     end
 
     within(".invoice_total") do
-      expect(page).to have_content("Total: $#{2 * item.price}")
+      expect(page).to have_content("$#{2 * item.price}")
     end
 
-    click_on "-"
+    # And when I decrease the quantity
+    click_on "decrease"
+    # Then my current page should be '/cart'
 
     expect(current_path).to eq("/cart")
     within(".invoice_item") do
       expect(page).to have_content(item.title)
-      expect(page).to have_content("Quantity: 1")
-      expect(page).to have_content("Subtotal: $#{item.price}")
+      expect(page).to have_content("1")
+    end
+    # And the subtotal for that item should decrease
+    within(".invoice_item") do
+      expect(page).to have_content("$#{item.price}")
+
     end
     within(".invoice_total") do
-      expect(page).to have_content("Total: $#{item.price}")
+      expect(page).to have_content("$#{item.price}")
     end
   end
 end

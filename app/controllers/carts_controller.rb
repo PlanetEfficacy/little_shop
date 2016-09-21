@@ -1,4 +1,6 @@
 class CartsController < ApplicationController
+  helper_method :test_mode?
+  
   def item
     Item.find(params[:item_id])
   end
@@ -25,6 +27,14 @@ class CartsController < ApplicationController
       @cart.decrease_quantity(item.id)
     end
     redirect_to cart_path
+  end
+
+  def test_mode?
+    if Rails.env.test?
+      true
+    else
+      false
+    end
   end
 
   private
