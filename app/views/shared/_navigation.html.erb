@@ -1,27 +1,31 @@
 <div class="container">
-  <!-- <div class="nav"> -->
     <ul class="nav nav-tabs">
-      <a class="navbar-brand" href="/">Waddams Emporium</a>
-      <li role="presentation">
-        <% if current_admin?  %>
-          <%= link_to "Welcome, Administrator...", admin_dashboard_path, class: "nav-item nav-link" %>
-          <%= link_to "Orders", orders_path, class: "nav-item nav-link" %>
-          <%= link_to "Logout", logout_path, method: :delete, class: "nav-item nav-link"%>
 
-        <% elsif logged_in? %>
-          <%= link_to "Welcome, #{current_user.username}...", dashboard_path, class: "nav-item nav-link" %>
-          <%= link_to "Orders", orders_path, class: "nav-item nav-link" %>
-          <%= link_to "Logout", logout_path, method: :delete, class: "nav-item nav-link"%>
-        <% else %>
-          <%= link_to "Login", login_path, class: "nav-item nav-link"%>
-          <%= link_to "Create Account", new_user_path, class: "nav-item nav-link"%>
-        <% end %>
-      </li>
-      <li role="presentation">
-        <% if !cart_empty? %>
-          <%= link_to "Cart", cart_path, class: "nav-item nav-link" %>
-        <% end %>
-      </li>
+      <li role="presentation"><%= link_to "Waddams Emporium", items_path, class: "navbar-nav-item nav-link" %></li>
+
+      <% if current_admin?  %>
+
+        <li role="presentation"><%= link_to "Welcome, Administrator...", admin_dashboard_path, class: "nav-item nav-link" %></li>
+        <li role="presentation"><%= link_to "Orders", orders_path, class: "nav-item nav-link" %></li>
+        <li role="presentation"><%= link_to "Logout", logout_path, method: :delete, class: "nav-item nav-link"%></li>
+
+      <% elsif logged_in? %>
+
+        <li role="presentation"><%= link_to "Welcome, #{current_user.username}...", dashboard_path, class: "nav-item nav-link" %></li>
+        <li role="presentation"><%= link_to "Orders", orders_path, class: "nav-item nav-link" %></li>
+        <li role="presentation"><%= link_to "Logout", logout_path, method: :delete, class: "nav-item nav-link"%></li>
+
+      <% else %>
+
+        <li role="presentation"><%= link_to "Login", login_path, class: "nav-item nav-link"%></li>
+        <li role="presentation"><%= link_to "Create Account", new_user_path, class: "nav-item nav-link"%></li>
+
+      <% end %>
+
+      <% if !cart_empty? %>
+
+        <li role="presentation"><%= link_to "Cart", cart_path, class: "nav-item nav-link" %></li>
+
+      <% end %>
     </ul>
-  <!-- </div> -->
 </div>

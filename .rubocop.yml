@@ -831,7 +831,7 @@ Style/StabbyLambdaParentheses:
 Style/StringLiterals:
   Description: 'Checks if uses of quotes match the configured preference.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#consistent-string-literals'
-  Enabled: true
+  Enabled: false
 
 Style/StringLiteralsInInterpolation:
   Description: >-

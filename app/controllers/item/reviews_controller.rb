@@ -12,6 +12,12 @@ class Item::ReviewsController < ApplicationController
     redirect_to item_path(@item)
   end
 
+  def destroy
+    @review = Review.find(params[:id])
+    @review.destroy
+    redirect_to item_path(@review.item)
+  end
+
   private
 
   def review_params

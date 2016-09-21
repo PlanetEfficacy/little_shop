@@ -26,6 +26,12 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
+    order_saved?
+  end
+
+  private
+
+  def order_saved?
     if @order.ordered? || @order.paid?
       status = params[:status]
       @order.update(status: status)

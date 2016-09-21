@@ -12,7 +12,6 @@ RSpec.describe Item, type: :model do
     it { should validate_numericality_of(:price).is_greater_than(0) }
     it { should validate_presence_of(:categories) }
     it { should have_many(:reviews) }
-
   end
 
   it 'can return its price in dollars' do
@@ -44,8 +43,8 @@ RSpec.describe Item, type: :model do
 
   it "has an average rating" do
     item = Fabricate(:item)
-    item.reviews.create(stars: 4)
-    item.reviews.create(stars: 5)
+    item.reviews.create(body: "this is a long enough review to pass", stars: 4)
+    item.reviews.create(body: "this is a long enough review to pass", stars: 5)
     expect(item.reviews.count).to eq(2)
     expect(item.average_rating).to eq(4.5)
   end
@@ -55,5 +54,4 @@ RSpec.describe Item, type: :model do
     expect(item.reviews.count).to eq(0)
     expect(item.average_rating).to eq("Not enough reviews.")
   end
-
 end
