@@ -50,4 +50,10 @@ RSpec.describe Item, type: :model do
     expect(item.average_rating).to eq(4.5)
   end
 
+  it "has does not have an average rating without any reviews" do
+    item = Fabricate(:item)
+    expect(item.reviews.count).to eq(0)
+    expect(item.average_rating).to eq("Not enough reviews.")
+  end
+
 end

@@ -37,6 +37,11 @@ class Item < ActiveRecord::Base
   end
 
   def average_rating
-    reviews.average(:stars).round(2)
+    # binding.pry
+    if reviews.count > 0
+      reviews.average(:stars).round(1)
+    else
+      "Not enough reviews."
+    end
   end
 end
