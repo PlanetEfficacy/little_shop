@@ -16,6 +16,4 @@
 
 # Ignore application configuration
 /config/application.yml
-
-#ignore fabricated images
-public/system
+/public/system/*

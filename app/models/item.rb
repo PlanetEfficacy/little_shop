@@ -7,6 +7,7 @@ class Item < ActiveRecord::Base
   validates_uniqueness_of :title
   validates_numericality_of :price, greater_than: 0
   validates_presence_of :categories
+  has_many :reviews
 
   has_attached_file :image, styles: {
    thumb: '100x100>',
@@ -32,6 +33,15 @@ class Item < ActiveRecord::Base
       image.url(:medium)
     else
       image_url
+    end
+  end
+
+  def average_rating
+    # binding.pry
+    if reviews.count > 0
+      reviews.average(:stars).round(1)
+    else
+      "Not enough reviews."
     end
   end
 end

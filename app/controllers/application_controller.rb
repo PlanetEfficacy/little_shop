@@ -45,4 +45,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_session(user)
+    session[:user_id] = user.id
+  end
+
 end
