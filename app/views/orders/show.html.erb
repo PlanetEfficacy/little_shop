@@ -8,12 +8,13 @@
   <tr>
     <th>Items</th>
   </tr>
+  
   <% @order.item_orders.each do |item_order| %>
     <tr>
       <td><%= link_to item_order.item.title, item_path(item_order.item) %></td>
-      <td><%= item_order.quantity %>
-      <td><%= number_to_currency(item_order.item.dollars) %>
-      <td><%= number_to_currency(item_order.subtotal) %>
+      <td><%= item_order.quantity %></td>
+      <td><%= number_to_currency(item_order.item.dollars) %></td>
+      <td><%= number_to_currency(item_order.subtotal) %></td>
     </tr>
   <% end %>
 </table>
