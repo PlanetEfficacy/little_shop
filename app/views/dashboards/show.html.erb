@@ -1,5 +1,41 @@
 <h2>Logged in as <%= @user.username %></h2>
 
-<%= link_to "View Cart", cart_path %>
+<div class="dashboard-link-to-cart">
+  <%= link_to "View Cart", cart_path %>
+</div>
 
-<%= @user.user_profile.first_name %>
+<table class="table">
+  <tr>
+    <td>
+      Your Name:
+    </td>
+    <td>
+      <%= @user.user_profile.first_name %> <%= @user.user_profile.last_name %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Street Address:
+    </td>
+    <td>
+      <%= @user.user_profile.street_address %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      City:
+    </td>
+    <td>
+      <%= @user.user_profile.city %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      State and Zipcode:
+    </td>
+    <td>
+      <%= @user.user_profile.state %>, <%= @user.user_profile.zipcode %>
+    <br>
+    </td>
+  </tr>
+</table>
