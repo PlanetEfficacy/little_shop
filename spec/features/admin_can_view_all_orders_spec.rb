@@ -13,11 +13,8 @@ RSpec.feature "admin can see dashboard" do
     # As a logged in Admin
     admin = Fabricate(:user, role: 1)
 
-    visit login_path
-    fill_in "Username", with: admin.username
-    fill_in "Password", with: admin.password
-    click_button "Login"
-    #when I visit the dashboard
+    login_as(admin)
+     #when I visit the dashboard
     expect(current_path).to eq(admin_dashboard_path)
     #then I can see a listing of all orders
     expect(page).to have_content("All Orders")
@@ -52,10 +49,7 @@ RSpec.feature "admin can see dashboard" do
     admin = Fabricate(:user, role: 1)
     # As a logged in Admin
 
-    visit login_path
-    fill_in "Username", with: admin.username
-    fill_in "Password", with: admin.password
-    click_button "Login"
+    login_as(admin)
     # And I can filter orders to display by each status type ("Ordered", "Paid", "Cancelled", "Completed")
     click_link "Ordered"
     expect(current_path).to eq(admin_orders_ordered_path)
@@ -71,10 +65,7 @@ RSpec.feature "admin can see dashboard" do
     admin = Fabricate(:user, role: 1)
     # As a logged in Admin
 
-    visit login_path
-    fill_in "Username", with: admin.username
-    fill_in "Password", with: admin.password
-    click_button "Login"
+    login_as(admin)
     # And I can filter orders to display by each status type ("Ordered", "Paid", "Cancelled", "Completed")
     click_link "Paid"
     expect(current_path).to eq(admin_orders_paid_path)
@@ -91,10 +82,7 @@ RSpec.feature "admin can see dashboard" do
     admin = Fabricate(:user, role: 1)
     # As a logged in Admin
 
-    visit login_path
-    fill_in "Username", with: admin.username
-    fill_in "Password", with: admin.password
-    click_button "Login"
+    login_as(admin)
     # And I can filter orders to display by each status type ("Ordered", "Paid", "Cancelled", "Completed")
     click_link "Cancelled"
     expect(current_path).to eq(admin_orders_cancelled_path)
@@ -110,11 +98,8 @@ RSpec.feature "admin can see dashboard" do
 
     admin = Fabricate(:user, role: 1)
     # As a logged in Admin
-
-    visit login_path
-    fill_in "Username", with: admin.username
-    fill_in "Password", with: admin.password
-    click_button "Login"
+    
+    login_as(admin)
     # And I can filter orders to display by each status type ("Ordered", "Paid", "Cancelled", "Completed")
     click_link "Completed"
     expect(current_path).to eq(admin_orders_completed_path)

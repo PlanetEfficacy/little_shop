@@ -34,6 +34,9 @@
           <% (5 - review.stars).times do %>
             <span class="glyphicon glyphicon-star-empty"></span>
           <% end %>
+          <% if review.user == current_user %>
+            <%= button_to "Delete Review", item_review_path(review), method: :delete %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -71,8 +74,6 @@
               <%= f.submit "Submit Review", class: "btn btn-primary" %>
             </div>
           </div>
-
-
         <% end %>
       </div>
     </div>
