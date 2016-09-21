@@ -44,8 +44,8 @@ RSpec.describe Item, type: :model do
 
   it "has an average rating" do
     item = Fabricate(:item)
-    item.reviews.create(stars: 4)
-    item.reviews.create(stars: 5)
+    item.reviews.create(body: "this is a long enough review to pass", stars: 4)
+    item.reviews.create(body: "this is a long enough review to pass", stars: 5)
     expect(item.reviews.count).to eq(2)
     expect(item.average_rating).to eq(4.5)
   end
