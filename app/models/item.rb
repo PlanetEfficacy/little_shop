@@ -37,6 +37,6 @@ class Item < ActiveRecord::Base
   end
 
   def average_rating
-    reviews.average(:stars)
+    reviews.average(:stars).round(2)
   end
 end
