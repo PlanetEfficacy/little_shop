@@ -44,7 +44,7 @@
   <div class="container">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">New Review</h3>
+        <h3 class="panel-title">Submit a new review for: <%= @item.title %></h3>
       </div>
       <div class="new_review panel-body">
         <%= form_for [@item, @review], :html => {:class => "form"} do |f| %>
