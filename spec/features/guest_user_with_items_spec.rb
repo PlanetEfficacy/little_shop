@@ -41,6 +41,8 @@ RSpec.feature "guest user must create account to Checkout" do
     # if there is something in the cart whenever you create an account, after you create the account, we send you to your cart
     visit cart_path
     expect(page).to have_css(".invoice_item")
-    expect(page).to have_css(".thumbnail", count: 1)
+    within ".invoice_item" do
+      expect(page).to have_css("img", count: 1)
+    end
   end
 end

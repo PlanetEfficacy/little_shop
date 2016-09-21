@@ -1,32 +1,86 @@
 <div class="invoice_item">
-<% @cart.items.each do |item| %>
-    <div>
-      <%= link_to image_tag(item.image_url, class: 'thumbnail' ), item_path(item)%>
-    </div>
-    <p>Title: <%= item.title %></p>
-    <p>Description: <%= item.description %></p>
-    <p>Price: <%= number_to_currency(item.dollars) %></p>
-    <p>Quantity: <%= @cart.quantity(item.id) %></p>
-    <p>Subtotal: <%= number_to_currency(@cart.subtotal(item.id)) %> </p>
-    <%= button_to "+", cart_path(item_id: item.id, change_quantity: "increase"), method: :put %>
-    <% if @cart.has_more_than_one(item.id) %>
-      <%= button_to "-", cart_path(item_id: item.id, change_quantity: "decrease"), method: :put %>
-    <% end %>
-  <%= link_to "Remove", cart_path(item_id: item.id), method: :delete %>
-<% end %>
-</div>
+<table class="table">
+  <tr>
+    <th>Item</th>
+    <th></th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Subtotal</th>
+    <th></th>
+  </tr>
+  <% @cart.items.each do |item| %>
+  <tr>
+    <td colspan="2">
+      <div class="col-md-6">
+        <%= image_tag item.product_image, class: "product-image" %>
+      </div>
+      <%= render "/shared/item_show", item: item %>
+      <div class="btn-toolbar">
+        <% if test_mode? %>
+          <%= button_to "increase", cart_path(item_id: item.id, change_quantity: "increase"), method: :put %>
+        <% else %>
+          <%= button_to cart_path(item_id: item.id, change_quantity: "increase"), method: :put, class: "btn btn-default add-item" do %>
+            <span class="glyphicon glyphicon-plus"></span>
+          <% end %>
+        <% end %>
 
+        <% if @cart.has_more_than_one(item.id) %>
+          <% if test_mode? %>
+            <%= button_to "decrease", cart_path(item_id: item.id, change_quantity: "decrease"), method: :put %>
+          <% else %>
+            <%= button_to cart_path(item_id: item.id, change_quantity: "decrease"), method: :put, class: "btn btn-default add-item" do %>
+              <span class="glyphicon glyphicon-minus"></span>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </td>
 
-<div class="invoice_total">
-  <p>Total: <%= number_to_currency(@cart.total_price) %></p>
-</div>
-
-<% if logged_in? %>
-  <% if @cart.contents.empty? %>
-    <h2 class="discrepancy"> I've happened upon you while I was taking my typewriter to the local coffee shop for a pour over and noticed that your cart is ironically empty. Perhaps you would like to <%= link_to "correct this discrepancy", root_path %>...?</h2>
-  <% elsif !@cart.contents.empty? %>
-    <%= button_to "Checkout", orders_path, class: 'btn btn-primary' %>
+    <td>
+      <h5><%= number_to_currency(item.dollars) %></h5>
+    </td>
+    <td>
+      <h5><%= @cart.quantity(item.id) %></h5>
+    </td>
+    <td>
+      <h5><%= number_to_currency(@cart.subtotal(item.id)) %></h5>
+    </td>
+    <td>
+      <%= button_to cart_path(item_id: item.id), method: :delete, class: "btn btn-danger btn-sm" do %>
+        <span class="glyphicon glyphicon-trash"></span> Remove
+      <% end %>
+    </td>
+  </tr>
   <% end %>
-  <% else %>
-  <%= link_to "Login or Create Account to Checkout", login_path %>
+  <tr class="invoice_total">
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><h4>Total:</h4></td>
+    <td><h4><%= number_to_currency(@cart.total_price) %></h4></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td colspan="2">
+    <% if logged_in? && !@cart.contents.empty? %>
+      <div>
+        <%= button_to "Checkout", orders_path, class: 'btn btn-primary btn-lg btn-block' %>
+      </div>
+    <% end %>
+    </td>
+  </tr>
+</table>
+
+<% if logged_in? && @cart.contents.empty? %>
+  <p class="discrepancy">
+    I've happened upon you while I was taking my typewriter to the local coffee shop for a pour over and noticed that your cart is ironically empty. Perhaps you would like to <%= link_to "correct this discrepancy", root_path %>...?
+  </p>
+<% end %>
+
+<% if !logged_in? %>
+  <%= link_to "Login or Create Account to Checkout", login_path, class: "btn btn-primary btn-lg btn-block" %>
 <% end %>
