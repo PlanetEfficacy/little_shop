@@ -12,7 +12,7 @@ Item.destroy_all
 
 # USER PROFILES
 
-2.times { UserProfile.create(
+5.times { UserProfile.create(
     first_name:       Faker::Name.first_name,
     last_name:        Faker::Name.last_name,
     street_address:   Faker::Address.street_address,
@@ -28,31 +28,31 @@ admin = User.create(
   username: "admin",
   password: "admin",
   role: 1,
-  user_profile: UserProfile.first,
+  user_profile: UserProfile.find(1),
 )
 
 david = User.create(
   username: "david",
   password: "david",
-  user_profile: UserProfile.first,
+  user_profile: UserProfile.find(2),
 )
 
 jesse = User.create(
   username: "jesse",
   password: "jesse",
-  user_profile: UserProfile.first
+  user_profile: UserProfile.find(3)
 )
 
 susi = User.create(
   username: "susi",
   password: "susi",
-  user_profile: UserProfile.first
+  user_profile: UserProfile.find(4)
 )
 
 sonia = User.create(
   username: "sonia",
   password: "sonia",
-  user_profile: UserProfile.first
+  user_profile: UserProfile.find(5)
 )
 
 
