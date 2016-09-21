@@ -2,7 +2,7 @@
 
 <div class="container">
   <% @items.in_groups_of(3, false).each do |group| %>
-  <div class="row">
+    <div class="row">
     <% group.each do |item| %>
       <div class="col-md-4">
         <div class="item">
@@ -12,7 +12,6 @@
           <p><%= button_to "Add to Cart", cart_path(item_id: item.id), class: 'btn btn-primary btn-sm'  %></p>
         </div>
       </div>
-    </div>
     <% end %>
   </div>
   <% end %>
