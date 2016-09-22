@@ -15,63 +15,6 @@
   </div>
 </div>
 
-<div class="reviews container">
-  <h3>Reviews</h3>
-  <% @item.reviews.each do |review| %>
-    <div class="review panel panel-default">
-      <div class="panel-body">
-        <h4> <%= review.body %> </h4>
-        <p> Posted by <%= review.user.username %> </p>
-        <p> Posted on <%= review.created_at %> </p>
-        <div class="stars">
-          <% review.stars.times do %>
-            <span class="glyphicon glyphicon-star"></span>
-          <% end %>
-          <% (5 - review.stars).times do %>
-            <span class="glyphicon glyphicon-star-empty"></span>
-          <% end %>
-          <% if review.user == current_user %>
-            <%= button_to "Delete Review", item_review_path(review), method: :delete %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>
+<%= render "/shared/review_index", item: @item %>
 
-<% if logged_in? %>
-  <div class="container">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Submit a new review for: <%= @item.title %></h3>
-      </div>
-      <div class="new_review panel-body">
-        <%= form_for [@item, @review], :html => {:class => "form"} do |f| %>
-        <%= f.hidden_field :item_id, value: @item.id %>
-          <div class="container">
-            <div class="col-md-11">
-              <div class="form-group">
-                <%= f.label :body %>
-                <%= f.text_area :body, class: "form-control" %>
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <div class="form-group">
-                <%= f.label :stars %>
-                <%= select_tag :stars, options_for_select([1, 2, 3, 4, 5]), class: "form-control" %>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="container">
-            <div class="col-md-3">
-              <%= f.submit "Submit Review", class: "btn btn-primary" %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-</div>
+<%= render "/shared/review_new", item: @item, review: @review %>
