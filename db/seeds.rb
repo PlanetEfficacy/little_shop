@@ -288,7 +288,7 @@ Item.create(
             )
 
 Item.create(
-  title: "Hancrafted Micronesian Post-It Notes",
+  title: "Handcrafted Micronesian Post-It Notes",
   description: "Each purchase of our limited-edition Handcrafted Micronesian Post-It Notes equips three non-hipster Micronesian families with their very own Waddams Logo Life Raft. Consumer activism at its finest. You, too, can feel like you have changed the world even though you haven't done anything at all!",
   image_url: "http://s3-ap-southeast-2.amazonaws.com/wc-prod-pim/JPEG_300x300/3M16043476_C_post_it_notes_yellow_12_pack.jpg",
   price: 415.00,
